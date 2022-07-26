@@ -1,116 +1,189 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
-
-class Cantique {
-  final List<String> n1;
-  final List<String> n2;
-  final List<String> n3;
-  final List<String> n4;
+class CantiqueModel {
   final String title;
   final int number;
-  final List<String> refrain;
-  final List<String> slides;
-  final List<String> parts;
-  Cantique({
-    required this.n1,
-    required this.n2,
-    required this.n3,
-    required this.n4,
+  final Lang language;
+  final bool refrain;
+  final List<Strophe> strophes;
+  final bool bookmarked;
+  final CrossReference equivalence;
+  CantiqueModel({
     required this.title,
     required this.number,
+    required this.language,
     required this.refrain,
-    required this.slides,
-    required this.parts,
+    required this.strophes,
+    required this.bookmarked,
+    required this.equivalence,
   });
 
-  Cantique copyWith({
-    List<String>? n1,
-    List<String>? n2,
-    List<String>? n3,
-    List<String>? n4,
+  CantiqueModel copyWith({
     String? title,
     int? number,
-    List<String>? refrain,
-    List<String>? slides,
-    List<String>? parts,
+    Lang? language,
+    bool? refrain,
+    List<Strophe>? strophes,
+    CrossReference? equivalence,
+    bool? bookmarked,
   }) {
-    return Cantique(
-      n1: n1 ?? this.n1,
-      n2: n2 ?? this.n2,
-      n3: n3 ?? this.n3,
-      n4: n4 ?? this.n4,
-      title: title ?? this.title,
-      number: number ?? this.number,
-      refrain: refrain ?? this.refrain,
-      slides: slides ?? this.slides,
-      parts: parts ?? this.parts,
-    );
+    return CantiqueModel(
+        title: title ?? this.title,
+        number: number ?? this.number,
+        language: language ?? this.language,
+        refrain: refrain ?? this.refrain,
+        strophes: strophes ?? this.strophes,
+        bookmarked: bookmarked ?? this.bookmarked,
+        equivalence: equivalence ?? this.equivalence);
   }
+
+  factory CantiqueModel.fromMap(Map<String, dynamic> map) {
+    return CantiqueModel(
+        title: (map['title'] ?? '') as String,
+        number: (map['number'] ?? 0) as int,
+        language: Lang(desc: "Hymnes & Louanges", lang: "Francais"),
+        bookmarked: false,
+        equivalence: CrossReference(
+          francais: map['number'] as int,
+          fulfulde: 0,
+          english: 0,
+        ),
+        refrain: (map['parts'] as List<dynamic>).contains('refrain'),
+        strophes: (map['parts'] as List<dynamic>).map((part) {
+          return Strophe.fromMap({
+            'number': part as String,
+            'vers': map[part] as List<dynamic>,
+          });
+        }).toList());
+  }
+
+  @override
+  String toString() {
+    return 'CantiqueModel(title: $title, number: $number, refrain: $refrain, strophes: $strophes)';
+  }
+}
+
+class CrossReference {
+  final int fulfulde;
+  final int francais;
+  final int english;
+  CrossReference({
+    required this.fulfulde,
+    required this.francais,
+    required this.english,
+  });
+}
+
+var model = {
+  "1": [
+    "Miséricorde insondable!",
+    "Dieu peut-il tout pardonné?",
+    "Absoudre un si grand coupable,",
+    "Et mes péchés oublier?"
+  ],
+  "2": [
+    "Longtemps j'ai loin de sa face,",
+    "Provoqué son saint courroux,",
+    "Fermé mon coeur à sa grâce,",
+    "Blessé le sien devant tous."
+  ],
+  "3": [
+    "Ô Jésus, à toi je cède,",
+    "Je veux être libéré;",
+    "De tout péché qui m'obsède",
+    "Être à jamais délivré."
+  ],
+  "4": [
+    "Alléluia!  Plus de doute,",
+    "Mon fardeau m'est enlevé;",
+    "Pour le ciel je suis en route,",
+    "Heureux pour l'éternité."
+  ],
+  "title": "Miséricorde insondable",
+  "number": 271,
+  "refrain": [
+    "Jésus, je viens, je viens à toi.",
+    "Tel que je suis, je viens à toi.",
+    "Jésus, je viens, je viens à toi.",
+    "Tel que je suis, prends-moi."
+  ],
+  "slides": ["1", "refrain", "2", "refrain", "3", "refrain", "4", "refrain"],
+  "parts": ["1", "refrain", "2", "3", "4"]
+};
+
+class Lang {
+  final String lang;
+  final String desc;
+  Lang({
+    required this.lang,
+    required this.desc,
+  });
+}
+
+class Strophe {
+  final String number;
+  final List<Vers> vers;
+  Strophe({
+    required this.number,
+    required this.vers,
+  });
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      '1': n1,
-      '2': n2,
-      '3': n3,
-      '4': n4,
-      'title': title,
       'number': number,
-      'refrain': refrain,
-      'slides': slides,
-      'parts': parts,
+      'vers': vers.map((x) => x.toMap()).toList(),
     };
   }
 
-  factory Cantique.fromMap(Map<String, dynamic> map) {
-    return Cantique(
-      n1: List<String>.from((map['1'] ?? const <String>[]) as List<String>),
-      n2: List<String>.from((map['2'] ?? const <String>[]) as List<String>),
-      n3: List<String>.from((map['3'] ?? const <String>[]) as List<String>),
-      n4: List<String>.from((map['4'] ?? const <String>[]) as List<String>),
-      title: (map['title'] ?? '') as String,
-      number: (map['number'].toInt() ?? 0) as int,
-      refrain: List<String>.from((map['refrain'] ?? const <String>[]) as List<String>),
-      slides: List<String>.from((map['slides'] ?? const <String>[]) as List<String>),
-      parts: List<String>.from((map['parts'] ?? const <String>[]) as List<String>),
+  factory Strophe.fromMap(Map<String, dynamic> map) {
+    return Strophe(
+      number: (map['number'] ?? '') as String,
+      vers: List<Vers>.from(
+        (map['vers'] as List<dynamic>).map<Vers>(
+          (line) => Vers.fromMap(
+              {'content': line as String, 'bis': line.contains('2x')}),
+        ),
+      ),
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory Cantique.fromJson(String source) => Cantique.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Strophe.fromJson(String source) =>
+      Strophe.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() {
-    return 'Cantique(n1: $n1, n2: $n2, n3: $n3, n4: $n4, title: $title, number: $number, refrain: $refrain, slides: $slides, parts: $parts)';
+  String toString() => 'Strophe(number: $number, vers: $vers)';
+}
+
+class Vers {
+  final String content;
+  final bool bis;
+  Vers({
+    required this.content,
+    required this.bis,
+  });
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'content': content,
+      'bis': bis,
+    };
   }
 
-  @override
-  bool operator ==(covariant Cantique other) {
-    if (identical(this, other)) return true;
-  
-    return 
-      listEquals(other.n1, n1) &&
-      listEquals(other.n2, n2) &&
-      listEquals(other.n3, n3) &&
-      listEquals(other.n4, n4) &&
-      other.title == title &&
-      other.number == number &&
-      listEquals(other.refrain, refrain) &&
-      listEquals(other.slides, slides) &&
-      listEquals(other.parts, parts);
+  factory Vers.fromMap(Map<String, dynamic> map) {
+    return Vers(
+      content: ((map['content'] ?? '') as String).replaceAll('(2x)', ''),
+      bis: (map['content'] as String).contains('(2x)'),
+    );
   }
 
+  String toJson() => json.encode(toMap());
+
+  factory Vers.fromJson(String source) =>
+      Vers.fromMap(json.decode(source) as Map<String, dynamic>);
+
   @override
-  int get hashCode {
-    return n1.hashCode ^
-      n2.hashCode ^
-      n3.hashCode ^
-      n4.hashCode ^
-      title.hashCode ^
-      number.hashCode ^
-      refrain.hashCode ^
-      slides.hashCode ^
-      parts.hashCode;
-  }
+  String toString() => 'Vers(content: $content, bis: $bis)';
 }

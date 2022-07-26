@@ -11,13 +11,17 @@ Future<void> main() async {
   await Hive.initFlutter();
   await Hive.openBox<dynamic>('settings');
   await Hive.openBox('user');
+  //Hive.box('settings').put('color', 0xFF007681);
   Hive.box('settings').isEmpty
       ? {
           Hive.box('settings').put('language', 'en'),
           Hive.box('settings').put('theme', false),
+          Hive.box('setings').put('color', 0xFF007681)
         }
       : null;
-  runApp(HymnesAdventistes());
+  runApp(ProviderScope(
+    child: HymnesAdventistes(),
+  ));
 }
 
 // ignore: must_be_immutable
@@ -49,17 +53,18 @@ class HymnesAdventistes extends ConsumerWidget {
             const TextTheme()
                 .apply(bodyColor: Palette.light, displayColor: Palette.light),
           ),
-          primarySwatch: const MaterialColor(
-            0xFF003B5C,
+          primaryColor: Palette.tertiary,
+          primarySwatch: MaterialColor(
+            box.get('color'),
             {
-              100: Color(0xFF003B5C),
-              700: Color(0xFFEEC36D),
-              600: Color(0xFF337669),
-              200: Color(0xFFEEC36D),
-              500: Color(0xFF337669),
-              400: Color(0xFFEEC36D),
-              50: Color(0xFF337669),
-              300: Color(0xFFEEC36D),
+              100: Color(box.get('color')),
+              700: const Color(0xFFEEC36D),
+              600: const Color(0xFF337669),
+              200: const Color(0xFFEEC36D),
+              500: const Color(0xFF337669),
+              400: const Color(0xFFEEC36D),
+              50: const Color(0xFF337669),
+              300: const Color(0xFFEEC36D),
             },
           ),
           iconTheme: const IconThemeData(color: Palette.light, size: 22.0),
