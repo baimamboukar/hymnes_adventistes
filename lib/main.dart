@@ -36,7 +36,7 @@ class HymnesAdventistes extends ConsumerWidget {
       builder: (context, Box box, widget) => MaterialApp.router(
         builder: EasyLoading.init(),
         restorationScopeId: 'app',
-        locale: const Locale('en-US'),
+        locale: const Locale('fr'),
         routerDelegate: appRouter.delegate(),
         routeInformationParser: appRouter.defaultRouteParser(),
         debugShowCheckedModeBanner: false,
