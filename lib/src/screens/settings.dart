@@ -34,7 +34,7 @@ class Settings extends ConsumerWidget {
                 builder: (BuildContext context, Box box, Widget? widget) {
                   return CupertinoSwitch(
                     activeColor: Palette.primary,
-                    value: box.get('theme'),
+                    value: box.get('theme') ?? false,
                     onChanged: (value) {
                       box.put('theme', value);
                     },
@@ -131,7 +131,8 @@ class Settings extends ConsumerWidget {
                   width: 30,
                   decoration: Decorations.decorateBox(
                       radius: 30,
-                      color: Color(Hive.box('settings').get('color'))),
+                      color: Color(
+                          Hive.box('settings').get('color') ?? 0xFF007681)),
                 ),
               ),
             ),
