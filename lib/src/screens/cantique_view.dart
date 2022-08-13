@@ -131,7 +131,7 @@ class CantiqueView extends ConsumerWidget {
                 icon: const Icon(Icons.my_library_music, size: 68),
                 onPressed: () {
                   AudioPlayer player = AudioPlayer();
-                  AssetSource src = AssetSource("assets/sounds/101.midi");
+                  AssetSource src = AssetSource("sounds/101.midi");
                   player.play(src);
                 },
               ),
