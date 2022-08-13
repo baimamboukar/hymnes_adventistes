@@ -94,7 +94,7 @@ class Home extends ConsumerWidget {
                 labelType: NavigationRailLabelType.selected,
                 selectedIndex: activeIndex.state,
                 indicatorColor: Palette.tertiary,
-                backgroundColor: Color(box.get('color')),
+                backgroundColor: Color(box.get('color') ?? 0xFF007681),
                 selectedIconTheme: const IconThemeData(color: Palette.light),
                 unselectedIconTheme:
                     IconThemeData(color: Palette.light.withOpacity(.8)),
