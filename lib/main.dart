@@ -43,7 +43,7 @@ class HymnesAdventistes extends ConsumerWidget {
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
         title: 'Hymnes Adventistes',
-        themeMode: box.get('theme') ? ThemeMode.dark : ThemeMode.light,
+        themeMode: box.get('theme') ?? false ? ThemeMode.dark : ThemeMode.light,
         darkTheme: ThemeData.dark(),
         theme: ThemeData(
           useMaterial3: true,
@@ -55,9 +55,9 @@ class HymnesAdventistes extends ConsumerWidget {
           ),
           primaryColor: Palette.tertiary,
           primarySwatch: MaterialColor(
-            box.get('color'),
+            box.get('color') ?? 0xFF007681,
             {
-              100: Color(box.get('color')),
+              100: Color(box.get('color') ?? 0xFF007681),
               700: const Color(0xFFEEC36D),
               600: const Color(0xFF337669),
               200: const Color(0xFFEEC36D),
