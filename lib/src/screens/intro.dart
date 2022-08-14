@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart'
 import 'package:hymnes_adventistes/src/extensions/index.dart';
 import 'package:hymnes_adventistes/src/utils/index.dart';
 import 'package:hymnes_adventistes/src/utils/text_styles.dart' show TextStyles;
-import 'package:hymnes_adventistes/src/widgets/box.dart';
 import 'package:hymnes_adventistes/src/widgets/widgets.dart';
 
 class Intro extends ConsumerWidget {
