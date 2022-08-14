@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hymnes_adventistes/src/extensions/extensions.dart';
 import 'package:hymnes_adventistes/src/riverpods/cantique_services.dart';
-import 'package:hymnes_adventistes/src/router/router.gr.dart';
 import 'package:hymnes_adventistes/src/utils/index.dart';
 import 'package:hymnes_adventistes/src/router/router.gr.dart' as routes;
 import '../utils/text_styles.dart';
