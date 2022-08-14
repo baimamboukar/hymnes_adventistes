@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:hymnes_adventistes/src/extensions/extensions.dart';
 import 'package:hymnes_adventistes/src/models/cantique.dart';
 import 'package:hymnes_adventistes/src/screens/index.dart';
-import 'package:hymnes_adventistes/src/screens/intro.dart';
 import 'package:hymnes_adventistes/src/utils/index.dart';
 import 'package:hymnes_adventistes/src/utils/text_styles.dart';
 import 'package:line_icons/line_icons.dart';
