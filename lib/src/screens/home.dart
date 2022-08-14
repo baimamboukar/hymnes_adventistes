@@ -101,7 +101,7 @@ class Home extends ConsumerWidget {
                 destinations: const <NavigationRailDestination>[
                   NavigationRailDestination(
                     icon: Icon(LineIcons.music),
-                    label: Text("Hyms"),
+                    label: Text("Hymns"),
                     padding: EdgeInsets.only(bottom: 30),
                   ),
                   NavigationRailDestination(
