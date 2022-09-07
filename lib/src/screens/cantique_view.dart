@@ -109,7 +109,7 @@ class CantiqueView extends ConsumerWidget {
                           textAlign: TextAlign.justify,
                           style: TextStyles.designText(
                                   bold: false,
-                                  size: 14,
+                                  size: 15,
                                   color: cantique.refrain &&
                                           strophe.number == "refrain"
                                       ? Palette.primary
@@ -134,6 +134,9 @@ class CantiqueView extends ConsumerWidget {
                   AssetSource src = AssetSource("sounds/101.midi");
                   player.play(src);
                 },
+              ),
+              const SizedBox(
+                height: 24,
               ),
             ],
           ),
