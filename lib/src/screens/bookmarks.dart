@@ -20,6 +20,7 @@ class Bookmarks extends ConsumerWidget {
             thumbVisibility: true,
             child: ListView.builder(
               shrinkWrap: true,
+              restorationId: 'bookmarklist',
               itemCount: cantiques.length,
               itemBuilder: (context, index) {
                 final cantique = cantiques[index];
@@ -44,12 +45,6 @@ class Bookmarks extends ConsumerWidget {
                     style: TextStyles.designText(
                         bold: false, size: 9, color: Palette.dark),
                   ),
-                  // trailing: IconButton(
-                  //   icon: Icon(Icons.delete),
-                  //   onPressed: () {
-                  //     ref.read(cantiquesRiverpod).removeCantique(cantique);
-                  //   },
-                  // ),
                 );
               },
             ),
