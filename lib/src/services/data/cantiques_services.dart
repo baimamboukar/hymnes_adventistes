@@ -5,6 +5,7 @@ import 'package:hymnes_adventistes/src/models/cantique.dart';
 
 class CantiqueServices {
   // ignore: unused_field
+
   final Reader _read;
   CantiqueServices(this._read);
   Future<List<dynamic>> loadJsonData() async {
