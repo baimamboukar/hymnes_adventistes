@@ -12,33 +12,38 @@ class AdventColor {
 
 final adventColors = [
   AdventColor(
-    name: "Cyan",
-    desc: "Cyan color",
-    value: 0xFF007681,
-  ),
-  AdventColor(
-    name: "Blue",
+    name: "Emperor",
     desc: "Blue color",
-    value: 0xFF003B5C,
+    value: 0xFF4b207f,
   ),
   AdventColor(
-    name: "Blue",
+    name: "Denim",
     desc: "Blue color",
-    value: 0xFF003681,
+    value: 0xFF003b5c,
   ),
   AdventColor(
-    name: "Orange",
-    desc: "Orange color",
-    value: 0xFF007651,
+    name: "Vine",
+    desc: "Blue color",
+    value: 0xFF4a7729,
   ),
   AdventColor(
-    name: "Violet",
-    desc: "Violet color",
-    value: 0xFF417881,
+    name: "Grapevine",
+    desc: "Blue color",
+    value: 0xFF712550,
   ),
   AdventColor(
-    name: "Gris",
-    desc: "grise color",
-    value: 0xFF417AD1,
+    name: "Campfire",
+    desc: "Blue color",
+    value: 0xFFcd4900,
+  ),
+  AdventColor(
+    name: "Scarlett",
+    desc: "Blue color",
+    value: 0xFFd0021b,
+  ),
+  AdventColor(
+    name: "Amethyst",
+    desc: "Blue color",
+    value: 0xFF582c83,
   ),
 ];
