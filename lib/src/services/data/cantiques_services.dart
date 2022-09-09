@@ -17,17 +17,18 @@ class CantiqueServices {
   Future<List<CantiqueModel>> getAllCantiques() async {
     final data = await loadJsonData();
     return (data).map((cantique) {
-      return CantiqueModel.fromMap(cantique as Map<String, dynamic>);
+      return CantiqueModel.fromMap(cantique as Map<String, dynamic>, 'fr');
     }).toList();
   }
 
-  CantiqueModel getCantiqueById({required int number, required String lang}) {
+  Future<CantiqueModel> getCantiqueById(
+      {required int number, required String lang}) async {
     List<Map<String, dynamic>> cantiques = [];
     if (lang == 'fr') cantiques = frenchHymns;
     if (lang == 'en') cantiques = englishHyms;
     if (lang == 'full') cantiques = fulfuldeHymns;
     final data =
         cantiques.firstWhere((cantique) => cantique['number'] == number);
-    return CantiqueModel.fromMap(data);
+    return CantiqueModel.fromMap(data, lang);
   }
 }
