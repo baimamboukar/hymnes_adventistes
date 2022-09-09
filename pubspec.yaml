@@ -49,6 +49,7 @@ dependencies:
   hive_flutter: ^1.1.0
   lottie: ^1.3.0
   audioplayers: ^1.0.1
+  flutter_animate: ^1.0.0
 
 dev_dependencies:
   flutter_test:
