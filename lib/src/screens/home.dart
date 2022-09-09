@@ -16,53 +16,6 @@ class Home extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var model = {
-      "1": [
-        "Miséricorde insondable!",
-        "Dieu peut-il tout pardonné?",
-        "Absoudre un si grand coupable,",
-        "Et mes péchés oublier?"
-      ],
-      "2": [
-        "Longtemps j'ai loin de sa face,",
-        "Provoqué son saint courroux,",
-        "Fermé mon coeur à sa grâce,",
-        "Blessé le sien devant tous."
-      ],
-      "3": [
-        "Ô Jésus, à toi je cède,",
-        "Je veux être libéré;",
-        "De tout péché qui m'obsède",
-        "Être à jamais délivré."
-      ],
-      "4": [
-        "Alléluia!  Plus de doute,",
-        "Mon fardeau m'est enlevé;",
-        "Pour le ciel je suis en route,",
-        "Heureux pour l'éternité."
-      ],
-      "title": "Miséricorde insondable",
-      "number": 271,
-      "refrain": [
-        "Jésus, je viens, je viens à toi.",
-        "Tel que je suis, je viens à toi.",
-        "Jésus, je viens, je viens à toi.",
-        "Tel que je suis, prends-moi."
-      ],
-      "slides": [
-        "1",
-        "refrain",
-        "2",
-        "refrain",
-        "3",
-        "refrain",
-        "4",
-        "refrain"
-      ],
-      "parts": ["1", "refrain", "2", "3", "4"]
-    };
-    final data = CantiqueModel.fromMap(model);
-    debugPrint(data.toString());
     final activeIndex = ref.watch(activeIndexRiverpod.state);
     return ValueListenableBuilder(
       valueListenable: Hive.box('settings').listenable(),
@@ -91,26 +44,50 @@ class Home extends ConsumerWidget {
                 selectedLabelTextStyle: TextStyles.body,
                 labelType: NavigationRailLabelType.selected,
                 selectedIndex: activeIndex.state,
-                indicatorColor: Palette.tertiary,
+                indicatorColor: Palette.light.withOpacity(.55),
                 backgroundColor: Color(box.get('color') ?? 0xFF007681),
-                selectedIconTheme: const IconThemeData(color: Palette.light),
+                selectedIconTheme:
+                    IconThemeData(color: Color(box.get('color') ?? 0xFF007681)),
                 unselectedIconTheme:
                     IconThemeData(color: Palette.light.withOpacity(.8)),
-                destinations: const <NavigationRailDestination>[
+                destinations: <NavigationRailDestination>[
                   NavigationRailDestination(
-                    icon: Icon(LineIcons.music),
-                    label: Text("Hymns"),
-                    padding: EdgeInsets.only(bottom: 30),
+                    icon: const Icon(LineIcons.music),
+                    label: Text(
+                      "Hymns",
+                      style: TextStyles.designText(
+                          bold: false, size: 12, color: Palette.light),
+                    ),
+                    padding: const EdgeInsets.only(bottom: 30),
                   ),
                   NavigationRailDestination(
-                    icon: Icon(LineIcons.bookmark),
-                    label: Text("Favoris"),
-                    padding: EdgeInsets.only(bottom: 30),
+                    icon: const Icon(
+                      LineIcons.heart,
+                    ),
+                    label: Text(
+                      "Favoris",
+                      style: TextStyles.designText(
+                          bold: false, size: 12, color: Palette.light),
+                    ),
+                    padding: const EdgeInsets.only(bottom: 30),
                   ),
                   NavigationRailDestination(
-                    icon: Icon(Icons.book),
-                    label: Text("Params"),
-                    padding: EdgeInsets.only(bottom: 30),
+                    icon: const Icon(Icons.layers),
+                    label: Text(
+                      "Themes",
+                      style: TextStyles.designText(
+                          bold: false, size: 12, color: Palette.light),
+                    ),
+                    padding: const EdgeInsets.only(bottom: 30),
+                  ),
+                  NavigationRailDestination(
+                    icon: const Icon(Icons.settings),
+                    label: Text(
+                      "Parametres",
+                      style: TextStyles.designText(
+                          bold: false, size: 12, color: Palette.light),
+                    ),
+                    padding: const EdgeInsets.only(bottom: 30),
                   ),
                 ],
               ),
@@ -132,6 +109,7 @@ class Home extends ConsumerWidget {
                       children: const [
                         Intro(),
                         Bookmarks(),
+                        Text("Themes"),
                         Settings(),
                       ],
                     ),
