@@ -4,9 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart'
     show WidgetRef, ConsumerWidget;
 import 'package:hymnes_adventistes/src/extensions/index.dart';
+import 'package:hymnes_adventistes/src/models/cantique.dart';
+import 'package:hymnes_adventistes/src/riverpods/cantique_services.dart';
+import 'package:hymnes_adventistes/src/screens/cantique_view.dart';
 import 'package:hymnes_adventistes/src/utils/index.dart';
 import 'package:hymnes_adventistes/src/utils/text_styles.dart' show TextStyles;
 import 'package:hymnes_adventistes/src/widgets/widgets.dart';
+import 'package:hymnes_adventistes/src/router/router.gr.dart' as routes;
 
 class Intro extends ConsumerWidget {
   const Intro({Key? key}) : super(key: key);
@@ -71,15 +75,45 @@ class Intro extends ConsumerWidget {
                             if (int.parse(_numberController.value.text) <= 107)
                               CupertinoActionSheetAction(
                                 isDefaultAction: true,
-                                onPressed: () {},
+                                onPressed: () {
+                                  // ignore: no_leading_underscores_for_local_identifiers
+                                  CantiqueModel _cantique = ref
+                                      .read(dataServicesRiverpod)
+                                      .getCantiqueById(
+                                          number: int.parse(
+                                              _numberController.value.text),
+                                          lang: 'full');
+                                  context.router.push(
+                                      routes.CantiqueView(cantique: _cantique));
+                                },
                                 child: const Text("Fulfulde"),
                               ),
                             CupertinoActionSheetAction(
-                              onPressed: () {},
+                              onPressed: () {
+                                // ignore: no_leading_underscores_for_local_identifiers
+                                CantiqueModel _cantique = ref
+                                    .read(dataServicesRiverpod)
+                                    .getCantiqueById(
+                                        number: int.parse(
+                                            _numberController.value.text),
+                                        lang: 'fr');
+                                context.router.push(
+                                    routes.CantiqueView(cantique: _cantique));
+                              },
                               child: const Text("Francais"),
                             ),
                             CupertinoActionSheetAction(
-                              onPressed: () {},
+                              onPressed: () {
+                                // ignore: no_leading_underscores_for_local_identifiers
+                                CantiqueModel _cantique = ref
+                                    .read(dataServicesRiverpod)
+                                    .getCantiqueById(
+                                        number: int.parse(
+                                            _numberController.value.text),
+                                        lang: 'en');
+                                context.router.push(
+                                    routes.CantiqueView(cantique: _cantique));
+                              },
                               child: const Text("English"),
                             ),
                           ],
