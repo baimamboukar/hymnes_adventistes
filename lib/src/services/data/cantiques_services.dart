@@ -21,8 +21,7 @@ class CantiqueServices {
     }).toList();
   }
 
-  Future<CantiqueModel> getCantiqueById(
-      {required int number, required String lang}) async {
+  CantiqueModel getCantiqueById({required int number, required String lang}) {
     List<Map<String, dynamic>> cantiques = [];
     if (lang == 'fr') cantiques = frenchHymns;
     if (lang == 'en') cantiques = englishHyms;
