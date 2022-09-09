@@ -11,9 +11,8 @@
 // ignore_for_file: type=lint
 
 import 'package:auto_route/auto_route.dart' as _i3;
-import 'package:flutter/cupertino.dart' as _i5;
 import 'package:flutter/material.dart' as _i4;
-import 'package:hymnes_adventistes/src/models/cantique.dart' as _i6;
+import 'package:hymnes_adventistes/src/models/cantique.dart' as _i5;
 import 'package:hymnes_adventistes/src/screens/cantique_view.dart' as _i2;
 import 'package:hymnes_adventistes/src/screens/index.dart' as _i1;
 
@@ -57,7 +56,7 @@ class Home extends _i3.PageRouteInfo<void> {
 /// [_i2.CantiqueView]
 class CantiqueView extends _i3.PageRouteInfo<CantiqueViewArgs> {
   CantiqueView(
-      {_i5.Key? key, required _i6.CantiqueModel cantique, required String lang})
+      {_i4.Key? key, required _i5.CantiqueModel cantique, required String lang})
       : super(CantiqueView.name,
             path: '/cantique',
             args: CantiqueViewArgs(key: key, cantique: cantique, lang: lang));
@@ -69,9 +68,9 @@ class CantiqueViewArgs {
   const CantiqueViewArgs(
       {this.key, required this.cantique, required this.lang});
 
-  final _i5.Key? key;
+  final _i4.Key? key;
 
-  final _i6.CantiqueModel cantique;
+  final _i5.CantiqueModel cantique;
 
   final String lang;
 
