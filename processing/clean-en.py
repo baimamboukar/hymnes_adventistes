@@ -23,9 +23,6 @@ for index in range(64, 65):
         model["refrain"] = model["1"].split("Refrain")[1]
         model["1"] = model["1"].split("Refrain")[0]
     model["references"] = {"en": int(cantique["number"]), "fr": 0, "ful": 0}
-    if (int(model["number"])) in ful2fr:
-        full = ful2fr[int(cantique["number"])]
-        cantique["references"] = {"en": cantique["number"], "fr": 0, "ful": full}
     for key in model["parts"]:
         model[key] = [clean for clean in model[key].split(";")]
     printer.pprint(model)
