@@ -9,7 +9,7 @@ class CantiqueServices {
   final Reader _read;
   CantiqueServices(this._read);
   Future<List<dynamic>> loadJsonData() async {
-    final data = await rootBundle.loadString("assets/data/hymns.json");
+    final data = await rootBundle.loadString("assets/data/hymns_fr.json");
     return jsonDecode(data);
   }
 
