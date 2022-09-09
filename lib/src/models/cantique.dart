@@ -38,16 +38,16 @@ class CantiqueModel {
         equivalence: equivalence ?? this.equivalence);
   }
 
-  factory CantiqueModel.fromMap(Map<String, dynamic> map) {
+  factory CantiqueModel.fromMap(Map<String, dynamic> map, String? lang) {
     return CantiqueModel(
         title: (map['title'] ?? '') as String,
         number: (map['number'] ?? 0) as int,
-        language: Lang(desc: "Hymnes & Louanges", lang: "Francais"),
+        language: Lang(desc: lang ?? 'fr', lang: lang ?? 'fr'),
         bookmarked: false,
         equivalence: CrossReference(
-          francais: map['number'] as int,
-          fulfulde: 0,
-          english: 0,
+          francais: (map['references']['fr'] ?? 0) as int,
+          fulfulde: (map['references']['ful'] ?? 0) as int,
+          english: (map['references']['en'] ?? 0) as int,
         ),
         refrain: (map['parts'] as List<dynamic>).contains('refrain'),
         strophes: (map['parts'] as List<dynamic>).map((part) {
