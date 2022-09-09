@@ -20,7 +20,7 @@ class Bookmarks extends ConsumerWidget {
         body: Column(
       children: [
         const SizedBox(
-          height: 20,
+          height: 4,
         ),
         Container(
           height: 60.0,
@@ -51,6 +51,9 @@ class Bookmarks extends ConsumerWidget {
               ),
             ),
           ),
+        ),
+        const SizedBox(
+          height: 10,
         ),
         Expanded(
           child: CupertinoScrollbar(
