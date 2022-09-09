@@ -6,11 +6,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart'
 import 'package:hymnes_adventistes/src/extensions/index.dart';
 import 'package:hymnes_adventistes/src/models/cantique.dart';
 import 'package:hymnes_adventistes/src/riverpods/cantique_services.dart';
-import 'package:hymnes_adventistes/src/screens/cantique_view.dart';
 import 'package:hymnes_adventistes/src/utils/index.dart';
 import 'package:hymnes_adventistes/src/utils/text_styles.dart' show TextStyles;
 import 'package:hymnes_adventistes/src/widgets/widgets.dart';
 import 'package:hymnes_adventistes/src/router/router.gr.dart' as routes;
+
+final _numberController = TextEditingController();
 
 class Intro extends ConsumerWidget {
   const Intro({Key? key}) : super(key: key);
@@ -18,7 +19,7 @@ class Intro extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // ignore: no_leading_underscores_for_local_identifiers
-    final _numberController = TextEditingController();
+
     return SingleChildScrollView(
       controller: ScrollController(),
       child: Column(
@@ -77,7 +78,7 @@ class Intro extends ConsumerWidget {
                                 isDefaultAction: true,
                                 onPressed: () async {
                                   // ignore: no_leading_underscores_for_local_identifiers
-                                  CantiqueModel _cantique = await ref
+                                  CantiqueModel _cantique = ref
                                       .read(dataServicesRiverpod)
                                       .getCantiqueById(
                                           number: int.parse(
@@ -91,7 +92,7 @@ class Intro extends ConsumerWidget {
                             CupertinoActionSheetAction(
                               onPressed: () async {
                                 // ignore: no_leading_underscores_for_local_identifiers
-                                CantiqueModel _cantique = await ref
+                                CantiqueModel _cantique = ref
                                     .read(dataServicesRiverpod)
                                     .getCantiqueById(
                                         number: int.parse(
@@ -105,7 +106,7 @@ class Intro extends ConsumerWidget {
                             CupertinoActionSheetAction(
                               onPressed: () async {
                                 // ignore: no_leading_underscores_for_local_identifiers
-                                CantiqueModel _cantique = await ref
+                                CantiqueModel _cantique = ref
                                     .read(dataServicesRiverpod)
                                     .getCantiqueById(
                                         number: int.parse(
