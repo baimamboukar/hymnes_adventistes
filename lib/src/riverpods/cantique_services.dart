@@ -5,6 +5,10 @@ import 'package:hymnes_adventistes/src/services/data/cantiques_services.dart';
 final dataServicesRiverpod =
     Provider.autoDispose<CantiqueServices>((ref) => CantiqueServices(ref.read));
 
-final cantiquesRiverpod = FutureProvider<List<CantiqueModel>>(
-  (ref) async => await ref.read(dataServicesRiverpod).getAllCantiques(),
+final cantiqueRiverpod = FutureProvider.family<CantiqueModel, List<dynamic>>(
+  (ref, data) async {
+    return await ref
+        .read(dataServicesRiverpod)
+        .getCantiqueById(number: data[0], lang: data[1]);
+  },
 );
