@@ -75,44 +75,44 @@ class Intro extends ConsumerWidget {
                             if (int.parse(_numberController.value.text) <= 107)
                               CupertinoActionSheetAction(
                                 isDefaultAction: true,
-                                onPressed: () {
+                                onPressed: () async {
                                   // ignore: no_leading_underscores_for_local_identifiers
-                                  CantiqueModel _cantique = ref
+                                  CantiqueModel _cantique = await ref
                                       .read(dataServicesRiverpod)
                                       .getCantiqueById(
                                           number: int.parse(
                                               _numberController.value.text),
                                           lang: 'full');
-                                  context.router.push(
-                                      routes.CantiqueView(cantique: _cantique));
+                                  context.router.push(routes.CantiqueView(
+                                      cantique: _cantique, lang: 'full'));
                                 },
                                 child: const Text("Fulfulde"),
                               ),
                             CupertinoActionSheetAction(
-                              onPressed: () {
+                              onPressed: () async {
                                 // ignore: no_leading_underscores_for_local_identifiers
-                                CantiqueModel _cantique = ref
+                                CantiqueModel _cantique = await ref
                                     .read(dataServicesRiverpod)
                                     .getCantiqueById(
                                         number: int.parse(
                                             _numberController.value.text),
                                         lang: 'fr');
-                                context.router.push(
-                                    routes.CantiqueView(cantique: _cantique));
+                                context.router.push(routes.CantiqueView(
+                                    cantique: _cantique, lang: 'fr'));
                               },
                               child: const Text("Francais"),
                             ),
                             CupertinoActionSheetAction(
-                              onPressed: () {
+                              onPressed: () async {
                                 // ignore: no_leading_underscores_for_local_identifiers
-                                CantiqueModel _cantique = ref
+                                CantiqueModel _cantique = await ref
                                     .read(dataServicesRiverpod)
                                     .getCantiqueById(
                                         number: int.parse(
                                             _numberController.value.text),
                                         lang: 'en');
-                                context.router.push(
-                                    routes.CantiqueView(cantique: _cantique));
+                                context.router.push(routes.CantiqueView(
+                                    cantique: _cantique, lang: 'en'));
                               },
                               child: const Text("English"),
                             ),
