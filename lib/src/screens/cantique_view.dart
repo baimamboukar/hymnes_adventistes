@@ -1,5 +1,4 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -12,6 +11,11 @@ import 'package:hymnes_adventistes/src/utils/text_styles.dart';
 import 'package:lottie/lottie.dart';
 
 final langs = ['full', 'fr', 'en'];
+final cantiqueBook = {
+  'full': 'Deterre Gimmi be Fulfulde',
+  'fr': 'Hymnes & Louanges',
+  'en': 'SDA hymnals',
+};
 
 class CantiqueView extends ConsumerWidget {
   final CantiqueModel cantique;
@@ -73,21 +77,70 @@ class CantiqueView extends ConsumerWidget {
               ),
             ],
           ),
+          // bottom: PreferredSize(
+          //   preferredSize: Size(context.screenWidth, 50),
+          //   child: Padding(
+          //     padding: const EdgeInsets.only(bottom: 8.0),
+          //     child: Container(
+          //       width: context.screenWidth * .9,
+          //       height: 50,
+          //       decoration:
+          //           Decorations.decorateBox(radius: 32, color: Palette.light)
+          //               .copyWith(
+          //         border: Border.all(color: Palette.light, width: 0),
+          //       ),
+          //       child: Row(
+          //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          //         children: [
+          //           LabelChip(
+          //             activeLanguage: activeLanguage,
+          //             language: "Fulfulde",
+          //             position: 0,
+          //           ),
+          //           LabelChip(
+          //             activeLanguage: activeLanguage,
+          //             language: "Francais",
+          //             position: 1,
+          //           ),
+          //           LabelChip(
+          //             activeLanguage: activeLanguage,
+          //             language: "English",
+          //             position: 2,
+          //           ),
+          //         ],
+          //       ),
+          //     ),
+          //   ),
+          // ),
         ),
         body: Builder(builder: (context) {
           final fullRef = cantique.equivalence.fulfulde;
           final frRef = cantique.equivalence.francais;
           final enRef = cantique.equivalence.english;
+
           return TabBarView(
             children: [
               buildCantiqueBody(
-                  number: fullRef != 0 ? fullRef : null,
-                  ref: ref,
-                  langue: 'full'),
+                  lang: 'full',
+                  cantique: fullRef != 0
+                      ? ref
+                          .read(dataServicesRiverpod)
+                          .getCantiqueById(number: fullRef, lang: 'full')
+                      : null),
               buildCantiqueBody(
-                  number: frRef != 0 ? frRef : null, ref: ref, langue: 'fr'),
+                  lang: 'fr',
+                  cantique: frRef != 0
+                      ? ref
+                          .read(dataServicesRiverpod)
+                          .getCantiqueById(number: frRef, lang: 'fr')
+                      : null),
               buildCantiqueBody(
-                  number: enRef != 0 ? enRef : null, ref: ref, langue: 'en'),
+                  lang: 'en',
+                  cantique: enRef != 0
+                      ? ref
+                          .read(dataServicesRiverpod)
+                          .getCantiqueById(number: enRef, lang: 'en')
+                      : null),
             ],
           );
         }),
@@ -113,83 +166,77 @@ class CantiqueView extends ConsumerWidget {
     );
   }
 
-  Widget buildCantiqueBody(
-      {int? number, required WidgetRef ref, required String langue}) {
-    if (number == null) {
+  Widget buildCantiqueBody({CantiqueModel? cantique, required String lang}) {
+    if (cantique == null) {
       return const Center(
         child: Text("Pas de cantique"),
       );
     }
-    final cantique = ref.watch(cantiqueRiverpod([number, langue]));
-    return cantique.when(
-        loading: () => const CupertinoActivityIndicator(),
-        error: (err, stack) => const Center(
-              child: Text("Une erreur est survenue"),
-            ),
-        data: (cantique) {
-          return SingleChildScrollView(
-            child: Center(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    cantique.title,
-                    style: TextStyles.designText(bold: false, size: 18),
-                  ),
-                  Text(
-                    "${cantique.number} - Hymnes & Louanges",
-                    style: TextStyles.designText(
-                        bold: false, color: Palette.dark, size: 12),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  for (var strophe in cantique.strophes)
-                    Column(
-                      children: [
-                        Text(strophe.number.toString()),
-                        const SizedBox(
-                          height: 8,
-                        ),
-                        ...strophe.vers.map(
-                          (vers) {
-                            return Text(
-                              vers.content,
-                              textAlign: TextAlign.justify,
-                              style: TextStyles.designText(
-                                      bold: false,
-                                      size: 15,
-                                      color: cantique.refrain &&
-                                              strophe.number == "refrain"
-                                          ? Palette.primary
-                                          : Palette.dark)
-                                  .copyWith(
-                                      fontStyle: cantique.refrain &&
-                                              strophe.number == "refrain"
-                                          ? FontStyle.italic
-                                          : FontStyle.normal),
-                            );
-                          },
-                        ),
-                        const SizedBox(
-                          height: 14,
-                        ),
-                      ],
-                    ),
-                  const SizedBox(
-                    height: 60,
-                  ),
-                ],
+    return SingleChildScrollView(
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 22),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const SizedBox(
+                height: 20,
               ),
-            ),
-          );
-        });
+              const SizedBox(
+                height: 20,
+              ),
+              Text(
+                cantique.title,
+                style: TextStyles.designText(bold: false, size: 18),
+              ),
+              Text(
+                "${cantique.number} - ${cantiqueBook[lang]}",
+                style: TextStyles.designText(
+                    bold: false, color: Palette.dark, size: 12),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              for (var strophe in cantique.strophes)
+                Column(
+                  children: [
+                    Text(strophe.number.toString()),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    ...strophe.vers.map(
+                      (vers) {
+                        return Text(
+                          vers.content,
+                          textAlign: TextAlign.justify,
+                          style: TextStyles.designText(
+                                  bold: false,
+                                  size: 15,
+                                  color: cantique.refrain &&
+                                          strophe.number == "refrain"
+                                      ? Palette.primary
+                                      : Palette.dark)
+                              .copyWith(
+                                  fontStyle: cantique.refrain &&
+                                          strophe.number == "refrain"
+                                      ? FontStyle.italic
+                                      : FontStyle.normal),
+                        );
+                      },
+                    ),
+                    const SizedBox(
+                      height: 14,
+                    ),
+                  ],
+                ),
+              const SizedBox(
+                height: 60,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
 
