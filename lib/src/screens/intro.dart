@@ -57,7 +57,18 @@ class Intro extends ConsumerWidget {
               FloatingActionButton(
                 onPressed: () {
                   if (int.parse(_numberController.value.text) > 695) {
-                    // invalid cantique
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: const Text("Cantique inexistant"),
+                        backgroundColor: Colors.red,
+                        action: SnackBarAction(
+                          label: "OK",
+                          onPressed: () {
+                            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                          },
+                        ),
+                      ),
+                    );
                   }
                   if (int.parse(_numberController.value.text) > 654) {
                     // go to cantique view with english
