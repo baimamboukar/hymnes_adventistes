@@ -31,8 +31,29 @@ class CantiqueView extends ConsumerWidget {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.favorite,
+                color: Colors.red,
+              ),
+            ),
+            IconButton(
+              onPressed: () {
+                showModalBottomSheet(
+                  context: context,
+                  backgroundColor: Colors.transparent,
+                  builder: (context) => const _BottomSheet(),
+                );
+              },
+              icon: const Icon(
+                Icons.more_vert,
+                color: Colors.white,
+              ),
+            ),
+          ],
           backgroundColor: Palette.primary,
-
           leading: IconButton(
             icon: const Icon(
               Icons.arrow_back_ios,
@@ -46,6 +67,10 @@ class CantiqueView extends ConsumerWidget {
                 bold: false, color: Palette.light, size: 14),
           ),
           bottom: TabBar(
+            indicator: const UnderlineTabIndicator(
+              borderSide: BorderSide(width: 2.0, color: Colors.white),
+              insets: EdgeInsets.symmetric(horizontal: 16.0),
+            ),
             indicatorColor: Palette.light,
             indicatorWeight: 2,
             indicatorPadding:
@@ -74,41 +99,6 @@ class CantiqueView extends ConsumerWidget {
               ),
             ],
           ),
-          // bottom: PreferredSize(
-          //   preferredSize: Size(context.screenWidth, 50),
-          //   child: Padding(
-          //     padding: const EdgeInsets.only(bottom: 8.0),
-          //     child: Container(
-          //       width: context.screenWidth * .9,
-          //       height: 50,
-          //       decoration:
-          //           Decorations.decorateBox(radius: 32, color: Palette.light)
-          //               .copyWith(
-          //         border: Border.all(color: Palette.light, width: 0),
-          //       ),
-          //       child: Row(
-          //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          //         children: [
-          //           LabelChip(
-          //             activeLanguage: activeLanguage,
-          //             language: "Fulfulde",
-          //             position: 0,
-          //           ),
-          //           LabelChip(
-          //             activeLanguage: activeLanguage,
-          //             language: "Francais",
-          //             position: 1,
-          //           ),
-          //           LabelChip(
-          //             activeLanguage: activeLanguage,
-          //             language: "English",
-          //             position: 2,
-          //           ),
-          //         ],
-          //       ),
-          //     ),
-          //   ),
-          // ),
         ),
         body: Builder(builder: (context) {
           final fullRef = cantique.equivalence.fulfulde;
@@ -141,24 +131,24 @@ class CantiqueView extends ConsumerWidget {
             ],
           );
         }),
-        bottomSheet: SizedBox(
-          height: 70,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8) +
-                const EdgeInsets.only(bottom: 8, top: 4),
-            child: GestureDetector(
-              onTap: () {},
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Lottie.asset("assets/animations/play.json",
-                      height: 55, width: 55),
-                  Lottie.asset("assets/animations/waves.json", height: 55),
-                ],
-              ),
-            ),
-          ),
-        ),
+        // bottomSheet: SizedBox(
+        //   height: 70,
+        //   child: Padding(
+        //     padding: const EdgeInsets.symmetric(horizontal: 8) +
+        //         const EdgeInsets.only(bottom: 8, top: 4),
+        //     child: GestureDetector(
+        //       onTap: () {},
+        //       child: Row(
+        //         mainAxisAlignment: MainAxisAlignment.start,
+        //         children: [
+        //           Lottie.asset("assets/animations/play.json",
+        //               height: 55, width: 55),
+        //           Lottie.asset("assets/animations/waves.json", height: 55),
+        //         ],
+        //       ),
+        //     ),
+        //   ),
+        // ),
       ),
     );
   }
@@ -271,6 +261,52 @@ class LabelChip extends StatelessWidget {
                   ? Palette.light
                   : Palette.primary),
         )),
+      ),
+    );
+  }
+}
+
+class _BottomSheet extends ConsumerWidget {
+  const _BottomSheet({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Container(
+      decoration: const BoxDecoration(
+        color: Palette.light,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(32),
+          topRight: Radius.circular(32),
+        ),
+      ),
+      child: Column(
+        children: [
+          const SizedBox(
+            height: 20,
+          ),
+          Container(
+            height: 5,
+            width: 50,
+            decoration: BoxDecoration(
+              color: Palette.primary,
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Lottie.asset("assets/animations/play.json",
+                  height: 55, width: 55),
+              Lottie.asset("assets/animations/waves.json", height: 55),
+            ],
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+        ],
       ),
     );
   }
