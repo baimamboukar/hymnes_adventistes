@@ -51,6 +51,7 @@ dependencies:
   audioplayers: ^1.0.1
   flutter_animate: ^1.0.0
   grouped_list: ^5.1.2
+  searchable_listview: ^2.0.1
 
 dev_dependencies:
   flutter_test:
