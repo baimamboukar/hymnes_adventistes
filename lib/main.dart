@@ -44,7 +44,11 @@ class HymnesAdventistes extends ConsumerWidget {
         supportedLocales: AppLocalizations.supportedLocales,
         title: 'Hymnes Adventistes',
         themeMode: box.get('theme') ?? false ? ThemeMode.dark : ThemeMode.light,
-        darkTheme: ThemeData.dark(),
+        darkTheme: ThemeData.dark().copyWith(
+            useMaterial3: true,
+            typography: Typography.material2021(),
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+            textTheme: GoogleFonts.poppinsTextTheme(const TextTheme())),
         theme: ThemeData(
           useMaterial3: true,
           typography: Typography.material2021(),
