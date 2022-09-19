@@ -153,9 +153,14 @@ class Intro extends ConsumerWidget {
             title: "Fulfulde",
             subtitle: "Defterre Gimmi be fulfulde",
           ),
-          const CardTile(
-            title: "Francais",
-            subtitle: "Hymnes & Louanges",
+          GestureDetector(
+            onTap: () {
+              context.router.push(const routes.HymnOverview());
+            },
+            child: const CardTile(
+              title: "Francais",
+              subtitle: "Hymnes & Louanges",
+            ),
           ),
           const CardTile(
             title: "English",
