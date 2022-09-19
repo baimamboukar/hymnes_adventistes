@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="baimamboukar.advent_society.org.hymnes_adventistes">
    <application
-        android:label="hymnes_adventistes"
+        android:label="Hymnes Adventistes"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
