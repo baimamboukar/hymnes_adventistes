@@ -13,12 +13,18 @@ final keyProvider = StateProvider<String>((ref) => "");
 final langIndexProvider = StateProvider<int>((ref) => 0);
 final bookNameRiverpod = StateProvider<String>((ref) {
   final index = ref.watch(langIndexProvider.state).state;
+  index == 0
+      ? cantiquesgallery = titlesFul
+      : index == 1
+          ? cantiquesgallery = titlesFr
+          : cantiquesgallery = titlesEn;
   return index == 0
       ? "Defterre Gimmi be Fulfulde"
       : index == 1
           ? "Hymnes & Louanges"
           : "SDA Hymnals";
 });
+List cantiquesgallery = titlesFul;
 
 class Bookmarks extends ConsumerWidget {
   const Bookmarks({Key? key}) : super(key: key);
@@ -28,7 +34,8 @@ class Bookmarks extends ConsumerWidget {
     final key = ref.watch(keyProvider.state).state;
     final langIndex = ref.watch(langIndexProvider.state).state;
     final bookName = ref.watch(bookNameRiverpod.state).state;
-    final _scrollController = ScrollController();
+    // ignore: no_leading_underscores_for_local_identifiers
+    final _scrollController = ScrollController(initialScrollOffset: 15);
     return Scaffold(
         body: Column(
       children: [
@@ -158,22 +165,22 @@ class Bookmarks extends ConsumerWidget {
         ),
         Expanded(
           child: Scrollbar(
-            thumbVisibility: false,
+            //thumbVisibility: false,
             trackVisibility: true,
             interactive: true,
-            controller: _scrollController,
+            //controller: _scrollController,
             child: ListView.builder(
               shrinkWrap: true,
               restorationId: 'bookmarklist',
               itemCount: key.isEmpty
-                  ? titlesFr.length
-                  : titlesFr
+                  ? cantiquesgallery.length
+                  : cantiquesgallery
                       .where((cantique) =>
                           cantique.toLowerCase().contains(key.toLowerCase()) ||
                           titlesFr.indexOf(cantique).toString().contains(key))
                       .length,
               itemBuilder: (context, index) {
-                final cantique = titlesFr[index];
+                final cantique = cantiquesgallery[index];
                 return ListTile(
                   onTap: () {
                     // ignore: no_leading_underscores_for_local_identifiers
