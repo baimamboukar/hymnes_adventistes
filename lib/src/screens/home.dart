@@ -21,10 +21,10 @@ class Home extends ConsumerWidget {
       valueListenable: Hive.box('settings').listenable(),
       builder: (BuildContext context, Box box, Widget? widget) => SafeArea(
         child: Scaffold(
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {},
-            child: const Icon(LineIcons.music),
-          ),
+          // floatingActionButton: FloatingActionButton(
+          //   onPressed: () {},
+          //   child: const Icon(LineIcons.music),
+          // ),
           body: Row(
             children: [
               NavigationRail(
