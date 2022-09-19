@@ -5,7 +5,9 @@ import 'package:hymnes_adventistes/src/utils/index.dart';
 import '../utils/decorations.dart';
 
 class Box extends StatelessWidget {
-  const Box({Key? key}) : super(key: key);
+  final bool? tiny;
+  final Widget? child;
+  const Box({Key? key, this.tiny, this.child}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +15,8 @@ class Box extends StatelessWidget {
       shape:
           RoundedRectangleBorder(borderRadius: Decorations.circularRadius(22)),
       child: Container(
-        height: context.screenHeight / 2,
+        height: tiny ?? false ? 100 : context.screenHeight / 2,
+        width: tiny ?? false ? 100 : null,
         decoration: Decorations.decorateBox(
           radius: 22,
           color: Palette.primary,
@@ -23,10 +26,10 @@ class Box extends StatelessWidget {
           //   colors: [Palette.primary, Palette.light, Palette.tertiary],
           // ),
         ),
-        child: const Center(
-          child: Text("Defterre Gimmi be Fulfulde"),
-        ),
+        child: child ?? const SizedBox.shrink(),
       ),
     );
   }
+
+  factory Box.tiny({Widget? child}) => Box(tiny: true, child: child);
 }
