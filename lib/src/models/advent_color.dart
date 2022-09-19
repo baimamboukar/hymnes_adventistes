@@ -14,7 +14,7 @@ final adventColors = [
   AdventColor(
     name: "Emperor",
     desc: "Blue color",
-    value: 0xFF4b207f,
+    value: 0xFF005481,
   ),
   AdventColor(
     name: "Denim",
