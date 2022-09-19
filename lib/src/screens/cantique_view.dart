@@ -32,11 +32,7 @@ class CantiqueView extends ConsumerWidget {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Palette.primary,
-          // shape: const RoundedRectangleBorder(
-          //   borderRadius: BorderRadius.vertical(
-          //     bottom: Radius.circular(18),
-          //   ),
-          // ),
+
           leading: IconButton(
             icon: const Icon(
               Icons.arrow_back_ios,
