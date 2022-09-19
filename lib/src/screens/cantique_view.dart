@@ -8,6 +8,7 @@ import 'package:hymnes_adventistes/src/riverpods/cantique_services.dart';
 import 'package:hymnes_adventistes/src/utils/decorations.dart';
 import 'package:hymnes_adventistes/src/utils/index.dart';
 import 'package:hymnes_adventistes/src/utils/text_styles.dart';
+import 'package:hymnes_adventistes/src/widgets/widgets.dart';
 import 'package:lottie/lottie.dart';
 
 final langs = ['full', 'fr', 'en'];
@@ -168,9 +169,7 @@ class CantiqueView extends ConsumerWidget {
 
   Widget buildCantiqueBody({CantiqueModel? cantique, required String lang}) {
     if (cantique == null) {
-      return const Center(
-        child: Text("Pas de cantique"),
-      );
+      return const NoReferenceCantique();
     }
     return SingleChildScrollView(
       child: Center(
