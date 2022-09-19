@@ -72,6 +72,11 @@ ful2fr = {
     334: 106,
     489: 107,
 }
+full2en = {
+    1: 190,
+    2: 432,
+    3: 433,
+}
 # Opening JSON file
 file = open("../assets/data/hymns.json", "r")
 out = open("../assets/data/hymns_with_ref.json", "w")
