@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hymnes_adventistes/src/extensions/extensions.dart';
@@ -29,6 +28,7 @@ class Bookmarks extends ConsumerWidget {
     final key = ref.watch(keyProvider.state).state;
     final langIndex = ref.watch(langIndexProvider.state).state;
     final bookName = ref.watch(bookNameRiverpod.state).state;
+    final _scrollController = ScrollController();
     return Scaffold(
         body: Column(
       children: [
@@ -137,13 +137,8 @@ class Bookmarks extends ConsumerWidget {
           ),
           child: Center(
             child: TextFormField(
-              onChanged: (value) {
-                ref.read(keyProvider.state).update((value) {
-                  if (value.length >= 2) {
-                    return value;
-                  }
-                  return "";
-                });
+              onChanged: (value) async {
+                ref.read(keyProvider.state).state = value;
               },
               decoration: InputDecoration(
                 hintText: "Numero cantique",
@@ -162,8 +157,11 @@ class Bookmarks extends ConsumerWidget {
           height: 10,
         ),
         Expanded(
-          child: CupertinoScrollbar(
-            thumbVisibility: true,
+          child: Scrollbar(
+            thumbVisibility: false,
+            trackVisibility: true,
+            interactive: true,
+            controller: _scrollController,
             child: ListView.builder(
               shrinkWrap: true,
               restorationId: 'bookmarklist',
