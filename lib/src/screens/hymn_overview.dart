@@ -83,7 +83,7 @@ class ThematicView extends ConsumerWidget {
         children: [
           const SizedBox(height: 14),
           SizedBox(
-            height: 110,
+            height: 40,
             child: ListView(
               scrollDirection: Axis.horizontal,
               shrinkWrap: true,
@@ -121,26 +121,40 @@ class ThematicView extends ConsumerWidget {
                     'cantiques': [28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38],
                     'icon': LineIcons.cross,
                   }
-                ].map((category) => Box.tiny(
-                      child: Column(
-                        children: [
-                          const SizedBox(height: 8),
-                          Icon(
-                            category['icon'] as IconData,
-                            size: 48,
-                            color: Palette.light,
-                          ),
-                          Text(
-                            category['title'] as String,
-                            style: TextStyles.designText(
-                                bold: false, size: 14, color: Palette.light),
-                          ),
-                        ],
+                ].map(
+                  (category) => Padding(
+                    padding: const EdgeInsets.only(left: 8.0),
+                    child: Container(
+                      height: 40,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12.0),
+                        color: Palette.primary,
                       ),
-                    )),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            const SizedBox(height: 8),
+                            Icon(
+                              category['icon'] as IconData,
+                              size: 18,
+                              color: Palette.light,
+                            ),
+                            Text(
+                              category['title'] as String,
+                              style: TextStyles.designText(
+                                  bold: false, size: 12, color: Palette.light),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
+          const Divider()
         ],
       ),
     );
