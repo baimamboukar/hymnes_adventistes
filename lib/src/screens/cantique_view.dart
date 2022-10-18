@@ -65,7 +65,7 @@ class CantiqueView extends ConsumerWidget {
           title: Text(
             cantique.title,
             style: TextStyles.designText(
-                bold: false, color: Palette.light, size: 14),
+                bold: true, color: Palette.light, size: 14),
           ),
           bottom: TabBar(
             indicator: const UnderlineTabIndicator(
@@ -186,7 +186,11 @@ class CantiqueView extends ConsumerWidget {
               for (var strophe in cantique.strophes)
                 Column(
                   children: [
-                    Text(strophe.number.toString()),
+                    Text(
+                      strophe.number.toString(),
+                      style: TextStyles.designText(
+                          bold: true, color: Palette.primary, size: 18),
+                    ),
                     const SizedBox(
                       height: 8,
                     ),
@@ -281,6 +285,7 @@ class _BottomSheet extends ConsumerWidget {
         ),
       ),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           const SizedBox(
             height: 20,
