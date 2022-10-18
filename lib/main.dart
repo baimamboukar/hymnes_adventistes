@@ -4,6 +4,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hive_listener/hive_listener.dart';
 import 'package:hymnes_adventistes/src/router/router.gr.dart';
 import 'package:hymnes_adventistes/src/utils/index.dart';
 
@@ -31,9 +32,10 @@ class HymnesAdventistes extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return ValueListenableBuilder(
-      valueListenable: Hive.box<dynamic>('settings').listenable(),
-      builder: (context, Box box, widget) => MaterialApp.router(
+    return HiveListener(
+      box: Hive.box('settings'),
+      // valueListenable: Hive.box<dynamic>('settings').listenable(),
+      builder: (Box box) => MaterialApp.router(
         builder: EasyLoading.init(),
         restorationScopeId: 'app',
         locale: const Locale('fr'),
@@ -71,6 +73,8 @@ class HymnesAdventistes extends ConsumerWidget {
               300: const Color(0xFFEEC36D),
             },
           ),
+          appBarTheme:
+              const AppBarTheme(iconTheme: IconThemeData(color: Palette.light)),
           iconTheme: const IconThemeData(color: Palette.light, size: 22.0),
         ),
       ),
