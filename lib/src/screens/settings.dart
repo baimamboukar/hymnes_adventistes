@@ -16,6 +16,7 @@ class Settings extends ConsumerWidget {
     return Scaffold(
       body: Column(
         children: [
+          const SizedBox(height: 18),
           Card(
             //color: Colors.white,
             child: ListTile(
@@ -38,6 +39,35 @@ class Settings extends ConsumerWidget {
                     onChanged: (value) {
                       box.put('theme', value);
                     },
+                  );
+                },
+              ),
+            ),
+          ),
+          Card(
+            //color: Colors.white,
+            child: ListTile(
+              leading: Text(
+                "Aa",
+                style: TextStyles.designText(
+                    size: 20, bold: true, color: Palette.dark),
+              ),
+              title: Text(
+                "Police",
+                style: TextStyles.designText(bold: false, size: 14),
+              ),
+              subtitle: Text(
+                "taille de police",
+                style: TextStyles.designText(
+                    bold: false, color: Palette.dark, size: 8),
+              ),
+              trailing: ValueListenableBuilder(
+                valueListenable: Hive.box('settings').listenable(),
+                builder: (BuildContext context, Box box, Widget? widget) {
+                  return Text(
+                    "18",
+                    style: TextStyles.designText(
+                        size: 20, bold: true, color: Palette.dark),
                   );
                 },
               ),
