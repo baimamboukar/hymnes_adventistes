@@ -35,12 +35,12 @@ class Bookmarks extends ConsumerWidget {
     final langIndex = ref.watch(langIndexProvider.state).state;
     final bookName = ref.watch(bookNameRiverpod.state).state;
     // ignore: no_leading_underscores_for_local_identifiers
-    final _scrollController = ScrollController(initialScrollOffset: 15);
+    //final _scrollController = ScrollController(initialScrollOffset: 15);
     return Scaffold(
         body: Column(
       children: [
         const SizedBox(
-          height: 4,
+          height: 25,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
