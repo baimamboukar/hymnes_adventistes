@@ -9,6 +9,7 @@ import 'package:hymnes_adventistes/src/utils/decorations.dart';
 import 'package:hymnes_adventistes/src/utils/index.dart';
 import 'package:hymnes_adventistes/src/utils/text_styles.dart';
 import 'package:hymnes_adventistes/src/widgets/widgets.dart';
+import 'package:line_icons/line_icons.dart';
 import 'package:lottie/lottie.dart';
 
 final langs = ['full', 'fr', 'en'];
@@ -295,13 +296,39 @@ class _BottomSheet extends ConsumerWidget {
           const SizedBox(
             height: 20,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Lottie.asset("assets/animations/play.json",
-                  height: 55, width: 55),
-              Lottie.asset("assets/animations/waves.json", height: 55),
-            ],
+          ListTile(
+            leading: CircleAvatar(
+              backgroundColor: Palette.primary,
+              child: const Icon(
+                Icons.screenshot,
+                color: Palette.light,
+              ),
+            ),
+            title: Text(
+              "Capture d'ecran",
+              style: TextStyles.designText(bold: false, size: 18),
+            ),
+            subtitle: Text(
+              "faites une capture personalisee",
+              style: TextStyles.designText(bold: false, size: 12),
+            ),
+          ),
+          ListTile(
+            leading: CircleAvatar(
+              backgroundColor: Palette.primary,
+              child: const Icon(
+                LineIcons.share,
+                color: Palette.light,
+              ),
+            ),
+            title: Text(
+              "Partager",
+              style: TextStyles.designText(bold: false, size: 18),
+            ),
+            subtitle: Text(
+              "partagez avec vos proches",
+              style: TextStyles.designText(bold: false, size: 12),
+            ),
           ),
           const SizedBox(
             height: 20,
