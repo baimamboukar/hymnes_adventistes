@@ -25,6 +25,7 @@ class Intro extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          const SizedBox(height: 18),
           Text("Hymnes Adventistes", style: TextStyles.title),
           const SizedBox(height: 18),
           Row(
