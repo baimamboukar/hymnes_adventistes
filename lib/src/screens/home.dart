@@ -19,105 +19,104 @@ class Home extends ConsumerWidget {
     final activeIndex = ref.watch(activeIndexRiverpod.state);
     return ValueListenableBuilder(
       valueListenable: Hive.box('settings').listenable(),
-      builder: (BuildContext context, Box box, Widget? widget) => SafeArea(
-        child: Scaffold(
-          // floatingActionButton: FloatingActionButton(
-          //   onPressed: () {},
-          //   child: const Icon(LineIcons.music),
-          // ),
-          body: Row(
-            children: [
-              NavigationRail(
-                //minWidth: 80,
-                onDestinationSelected: (index) {
-                  activeIndex.state = index;
-                },
-                extended: false,
-                groupAlignment: -.75,
-                leading: const CircleAvatar(
-                  radius: 22,
-                  backgroundImage: AssetImage("assets/images/logo.png"),
-                ),
-                //trailing: const Icon(LineIcons.music),
-                elevation: 10.0,
-                useIndicator: true,
-                selectedLabelTextStyle: TextStyles.body,
-                labelType: NavigationRailLabelType.selected,
-                selectedIndex: activeIndex.state,
-                indicatorColor: Palette.light.withOpacity(.55),
-                backgroundColor: Color(box.get('color') ?? 0xFF007681),
-                selectedIconTheme:
-                    IconThemeData(color: Color(box.get('color') ?? 0xFF007681)),
-                unselectedIconTheme:
-                    IconThemeData(color: Palette.light.withOpacity(.8)),
-                destinations: <NavigationRailDestination>[
-                  NavigationRailDestination(
-                    icon: const Icon(LineIcons.music),
-                    label: Text(
-                      "Hymns",
-                      style: TextStyles.designText(
-                          bold: false, size: 12, color: Palette.light),
-                    ),
-                    padding: const EdgeInsets.only(bottom: 30),
-                  ),
-                  NavigationRailDestination(
-                    icon: const Icon(
-                      LineIcons.heart,
-                    ),
-                    label: Text(
-                      "Favoris",
-                      style: TextStyles.designText(
-                          bold: false, size: 12, color: Palette.light),
-                    ),
-                    padding: const EdgeInsets.only(bottom: 30),
-                  ),
-                  NavigationRailDestination(
-                    icon: const Icon(Icons.layers),
-                    label: Text(
-                      "Themes",
-                      style: TextStyles.designText(
-                          bold: false, size: 12, color: Palette.light),
-                    ),
-                    padding: const EdgeInsets.only(bottom: 30),
-                  ),
-                  NavigationRailDestination(
-                    icon: const Icon(Icons.settings),
-                    label: Text(
-                      "Parametres",
-                      style: TextStyles.designText(
-                          bold: false, size: 12, color: Palette.light),
-                    ),
-                    padding: const EdgeInsets.only(bottom: 30),
-                  ),
-                ],
+      builder: (BuildContext context, Box box, Widget? widget) => Scaffold(
+        // floatingActionButton: FloatingActionButton(
+        //   onPressed: () {},
+        //   child: const Icon(LineIcons.music),
+        // ),
+        body: Row(
+          children: [
+            NavigationRail(
+              //minWidth: 80,
+              onDestinationSelected: (index) {
+                activeIndex.state = index;
+              },
+              extended: false,
+              groupAlignment: .75,
+              trailing: Image.asset(
+                "assets/images/logo.png",
+                width: 70,
+                height: 55,
               ),
-              // const VerticalDivider(thickness: 1),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12) +
-                      const EdgeInsets.only(top: 18),
-                  child: AnimatedSwitcher(
-                    duration: const Duration(milliseconds: 550),
-                    transitionBuilder: (widget, animation) {
-                      return ScaleTransition(
-                        scale: animation,
-                        child: widget,
-                      );
-                    },
-                    child: IndexedStack(
-                      index: activeIndex.state,
-                      children: const [
-                        Intro(),
-                        Bookmarks(),
-                        Text("Themes"),
-                        Settings(),
-                      ],
-                    ),
+              //trailing: const Icon(LineIcons.music),
+              elevation: 10.0,
+              useIndicator: true,
+              selectedLabelTextStyle: TextStyles.body,
+              labelType: NavigationRailLabelType.selected,
+              selectedIndex: activeIndex.state,
+              indicatorColor: Palette.light.withOpacity(.55),
+              backgroundColor: Color(box.get('color') ?? 0xFF007681),
+              selectedIconTheme:
+                  IconThemeData(color: Color(box.get('color') ?? 0xFF007681)),
+              unselectedIconTheme:
+                  IconThemeData(color: Palette.light.withOpacity(.8)),
+              destinations: <NavigationRailDestination>[
+                NavigationRailDestination(
+                  icon: const Icon(LineIcons.music),
+                  label: Text(
+                    "Hymns",
+                    style: TextStyles.designText(
+                        bold: false, size: 12, color: Palette.light),
+                  ),
+                  padding: const EdgeInsets.only(bottom: 30),
+                ),
+                NavigationRailDestination(
+                  icon: const Icon(
+                    LineIcons.heart,
+                  ),
+                  label: Text(
+                    "Favoris",
+                    style: TextStyles.designText(
+                        bold: false, size: 12, color: Palette.light),
+                  ),
+                  padding: const EdgeInsets.only(bottom: 30),
+                ),
+                NavigationRailDestination(
+                  icon: const Icon(Icons.layers),
+                  label: Text(
+                    "Themes",
+                    style: TextStyles.designText(
+                        bold: false, size: 12, color: Palette.light),
+                  ),
+                  padding: const EdgeInsets.only(bottom: 30),
+                ),
+                NavigationRailDestination(
+                  icon: const Icon(Icons.settings),
+                  label: Text(
+                    "Parametres",
+                    style: TextStyles.designText(
+                        bold: false, size: 12, color: Palette.light),
+                  ),
+                  padding: const EdgeInsets.only(bottom: 30),
+                ),
+              ],
+            ),
+            // const VerticalDivider(thickness: 1),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12) +
+                    const EdgeInsets.only(top: 18),
+                child: AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 550),
+                  transitionBuilder: (widget, animation) {
+                    return ScaleTransition(
+                      scale: animation,
+                      child: widget,
+                    );
+                  },
+                  child: IndexedStack(
+                    index: activeIndex.state,
+                    children: const [
+                      Intro(),
+                      Bookmarks(),
+                      Text("Themes"),
+                      Settings(),
+                    ],
                   ),
                 ),
-              )
-            ],
-          ),
+              ),
+            )
+          ],
         ),
       ),
     );
