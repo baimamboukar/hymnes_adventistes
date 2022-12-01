@@ -62,7 +62,7 @@ class Bookmarks extends ConsumerWidget {
                       height: 4,
                       width: 40,
                       decoration: BoxDecoration(
-                        color: Palette.primary,
+                        color: Palette.primary.value,
                         borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(12),
                             topRight: Radius.circular(12)),
@@ -89,7 +89,7 @@ class Bookmarks extends ConsumerWidget {
                       height: 4,
                       width: 40,
                       decoration: BoxDecoration(
-                        color: Palette.primary,
+                        color: Palette.primary.value,
                         borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(12),
                             topRight: Radius.circular(12)),
@@ -116,7 +116,7 @@ class Bookmarks extends ConsumerWidget {
                       height: 4,
                       width: 40,
                       decoration: BoxDecoration(
-                        color: Palette.primary,
+                        color: Palette.primary.value,
                         borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(12),
                             topRight: Radius.circular(12)),
@@ -191,7 +191,7 @@ class Bookmarks extends ConsumerWidget {
                         routes.CantiqueView(cantique: _cantique, lang: 'fr'));
                   },
                   leading: CircleAvatar(
-                    backgroundColor: Palette.primary,
+                    backgroundColor: Palette.primary.value,
                     child: Center(
                         child: Text("${index + 1}",
                             style: TextStyles.designText(
