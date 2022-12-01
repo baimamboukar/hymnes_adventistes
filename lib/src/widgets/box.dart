@@ -19,11 +19,11 @@ class Box extends StatelessWidget {
         width: tiny ?? false ? 100 : null,
         decoration: Decorations.decorateBox(
           radius: 22,
-          color: Palette.primary,
+          color: Palette.primary.value,
           // gradient: const LinearGradient(
           //   begin: Alignment.topLeft,
           //   end: Alignment.topRight,
-          //   colors: [Palette.primary, Palette.light, Palette.tertiary],
+          //   colors: [Palette.primary.value, Palette.light, Palette.tertiary],
           // ),
         ),
         child: child ?? const SizedBox.shrink(),
