@@ -23,7 +23,7 @@ class CardTile extends StatelessWidget {
         title: Text(
           title,
           style: TextStyles.designText(
-              bold: false, color: Palette.primary, size: 14),
+              bold: false, color: Palette.primary.value, size: 14),
         ),
         subtitle: Text(subtitle),
       ),
