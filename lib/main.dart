@@ -47,10 +47,16 @@ class HymnesAdventistes extends ConsumerWidget {
         title: 'Hymnes Adventistes',
         themeMode: box.get('theme') ?? false ? ThemeMode.dark : ThemeMode.light,
         darkTheme: ThemeData.dark().copyWith(
-            useMaterial3: true,
-            typography: Typography.material2021(),
-            visualDensity: VisualDensity.adaptivePlatformDensity,
-            textTheme: GoogleFonts.poppinsTextTheme(const TextTheme())),
+          scaffoldBackgroundColor: Palette.backgroundDark.value,
+          bottomNavigationBarTheme: BottomNavigationBarThemeData(
+              backgroundColor: Palette.backgroundDark.value),
+          typography: Typography.material2021(),
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+          textTheme: GoogleFonts.poppinsTextTheme(
+            const TextTheme()
+                .apply(bodyColor: Palette.light, displayColor: Palette.light),
+          ),
+        ),
         theme: ThemeData(
           useMaterial3: true,
           typography: Typography.material2021(),
