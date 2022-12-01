@@ -34,7 +34,7 @@ class Settings extends ConsumerWidget {
                 valueListenable: Hive.box('settings').listenable(),
                 builder: (BuildContext context, Box box, Widget? widget) {
                   return CupertinoSwitch(
-                    activeColor: Palette.primary,
+                    activeColor: Palette.primary.value,
                     value: box.get('theme') ?? false,
                     onChanged: (value) {
                       box.put('theme', value);
@@ -96,7 +96,8 @@ class Settings extends ConsumerWidget {
                                       height: 8,
                                       width: 75,
                                       decoration: Decorations.decorateBox(
-                                          radius: 24, color: Palette.primary),
+                                          radius: 24,
+                                          color: Palette.primary.value),
                                     ),
                                     const SizedBox(height: 22),
                                     Text(
