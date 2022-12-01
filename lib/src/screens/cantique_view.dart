@@ -54,7 +54,7 @@ class CantiqueView extends ConsumerWidget {
               ),
             ),
           ],
-          backgroundColor: Palette.primary,
+          backgroundColor: Palette.primary.value,
           leading: IconButton(
             icon: const Icon(
               Icons.arrow_back_ios,
@@ -189,7 +189,7 @@ class CantiqueView extends ConsumerWidget {
                     Text(
                       strophe.number.toString(),
                       style: TextStyles.designText(
-                          bold: true, color: Palette.primary, size: 18),
+                          bold: true, color: Palette.primary.value, size: 18),
                     ),
                     const SizedBox(
                       height: 8,
@@ -204,7 +204,7 @@ class CantiqueView extends ConsumerWidget {
                                   size: 15,
                                   color: cantique.refrain &&
                                           strophe.number == "refrain"
-                                      ? Palette.primary
+                                      ? Palette.primary.value
                                       : Palette.dark)
                               .copyWith(
                                   fontStyle: cantique.refrain &&
@@ -251,10 +251,10 @@ class LabelChip extends StatelessWidget {
         decoration: Decorations.decorateBox(
                 radius: 32,
                 color: activeLanguage.state == position
-                    ? Palette.primary
+                    ? Palette.primary.value
                     : Palette.light)
             .copyWith(
-                // border: Border.all(color: Palette.primary, width: 2),
+                // border: Border.all(color: Palette.primary.value, width: 2),
                 ),
         child: Center(
             child: Text(
@@ -264,7 +264,7 @@ class LabelChip extends StatelessWidget {
               size: 14,
               color: activeLanguage.state == position
                   ? Palette.light
-                  : Palette.primary),
+                  : Palette.primary.value),
         )),
       ),
     );
@@ -294,7 +294,7 @@ class _BottomSheet extends ConsumerWidget {
             height: 5,
             width: 50,
             decoration: BoxDecoration(
-              color: Palette.primary,
+              color: Palette.primary.value,
               borderRadius: BorderRadius.circular(10),
             ),
           ),
@@ -303,7 +303,7 @@ class _BottomSheet extends ConsumerWidget {
           ),
           ListTile(
             leading: CircleAvatar(
-              backgroundColor: Palette.primary,
+              backgroundColor: Palette.primary.value,
               child: const Icon(
                 Icons.screenshot,
                 color: Palette.light,
@@ -320,7 +320,7 @@ class _BottomSheet extends ConsumerWidget {
           ),
           ListTile(
             leading: CircleAvatar(
-              backgroundColor: Palette.primary,
+              backgroundColor: Palette.primary.value,
               child: const Icon(
                 LineIcons.share,
                 color: Palette.light,
