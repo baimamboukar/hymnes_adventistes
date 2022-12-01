@@ -33,7 +33,7 @@ class _HymnOverviewState extends ConsumerState<HymnOverview> {
       length: 3,
       child: Scaffold(
           appBar: AppBar(
-            backgroundColor: Palette.primary,
+            backgroundColor: Palette.primary.value,
             title: Text(
               "Hymnes & Louanges",
               style: TextStyles.designText(
@@ -128,7 +128,7 @@ class ThematicView extends ConsumerWidget {
                       height: 40,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12.0),
-                        color: Palette.primary,
+                        color: Palette.primary.value,
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -189,7 +189,7 @@ class IndexView extends ConsumerWidget {
                       routes.CantiqueView(cantique: _cantique, lang: 'fr'));
                 },
                 leading: CircleAvatar(
-                  backgroundColor: Palette.primary,
+                  backgroundColor: Palette.primary.value,
                   child: Center(
                       child: Text("${index + 1}",
                           style: TextStyles.designText(
@@ -233,7 +233,7 @@ class AlphabeticView extends ConsumerWidget {
         groupSeparatorBuilder: (String groupByValue) => Padding(
           padding: const EdgeInsets.all(8.0),
           child: CircleAvatar(
-            backgroundColor: Palette.primary,
+            backgroundColor: Palette.primary.value,
             child: Center(
                 child: Text(groupByValue,
                     style: TextStyles.designText(
@@ -242,7 +242,7 @@ class AlphabeticView extends ConsumerWidget {
         ),
         itemBuilder: (context, String cantique) => ListTile(
           leading: CircleAvatar(
-            backgroundColor: Palette.primary,
+            backgroundColor: Palette.primary.value,
             child: Center(
                 child: Text("${titlesFr.indexOf(cantique) + 1}",
                     style: TextStyles.designText(
