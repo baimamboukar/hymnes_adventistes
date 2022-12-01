@@ -98,6 +98,8 @@ class Intro extends ConsumerWidget {
                                           number: int.parse(
                                               _numberController.value.text),
                                           lang: 'full');
+
+                                  Navigator.pop(context);
                                   context.router.push(routes.CantiqueView(
                                       cantique: _cantique, lang: 'full'));
                                 },
@@ -112,6 +114,7 @@ class Intro extends ConsumerWidget {
                                         number: int.parse(
                                             _numberController.value.text),
                                         lang: 'fr');
+                                Navigator.pop(context);
                                 context.router.push(routes.CantiqueView(
                                     cantique: _cantique, lang: 'fr'));
                               },
@@ -126,6 +129,7 @@ class Intro extends ConsumerWidget {
                                         number: int.parse(
                                             _numberController.value.text),
                                         lang: 'en');
+                                Navigator.pop(context);
                                 context.router.push(routes.CantiqueView(
                                     cantique: _cantique, lang: 'en'));
                               },
