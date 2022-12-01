@@ -3,7 +3,9 @@ import 'package:hymnes_adventistes/src/utils/index.dart';
 
 class TextStyles {
   static TextStyle get title => TextStyle(
-      fontSize: 22.0, fontWeight: FontWeight.bold, color: Palette.primary);
+      fontSize: 22.0,
+      fontWeight: FontWeight.bold,
+      color: Palette.primary.value);
   static TextStyle get body => const TextStyle(
       fontSize: 16.0, fontWeight: FontWeight.normal, color: Palette.light);
   static TextStyle designText(
@@ -11,5 +13,5 @@ class TextStyles {
       TextStyle(
           fontSize: size,
           fontWeight: bold ? FontWeight.bold : FontWeight.normal,
-          color: color ?? Palette.primary);
+          color: color ?? Palette.primary.value);
 }
