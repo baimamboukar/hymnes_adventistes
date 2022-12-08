@@ -27,6 +27,13 @@ class CantiqueView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    OverlayEntry? entry;
+    // post frame callback
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      // if (entry == null) {
+      //   showOverlay(context, entry);
+      // }
+    });
     return DefaultTabController(
       initialIndex: langs.indexOf(lang),
       length: 3,
@@ -189,7 +196,7 @@ class CantiqueView extends ConsumerWidget {
                     Text(
                       strophe.number.toString(),
                       style: TextStyles.designText(
-                          bold: true, color: Palette.primary.value, size: 18),
+                          bold: true, color: Palette.primary.value, size: 20),
                     ),
                     const SizedBox(
                       height: 8,
@@ -198,19 +205,18 @@ class CantiqueView extends ConsumerWidget {
                       (vers) {
                         return Text(
                           vers.content,
-                          textAlign: TextAlign.justify,
+                          textAlign: TextAlign.center,
                           style: TextStyles.designText(
                                   bold: false,
-                                  size: 15,
+                                  size: 16,
                                   color: cantique.refrain &&
                                           strophe.number == "refrain"
                                       ? Palette.primary.value
                                       : Palette.dark)
                               .copyWith(
-                                  fontStyle: cantique.refrain &&
-                                          strophe.number == "refrain"
-                                      ? FontStyle.italic
-                                      : FontStyle.normal),
+                            textBaseline: TextBaseline.alphabetic,
+                            leadingDistribution: TextLeadingDistribution.even,
+                          ),
                         );
                       },
                     ),
@@ -228,6 +234,46 @@ class CantiqueView extends ConsumerWidget {
       ),
     );
   }
+}
+
+void showOverlay(BuildContext context, OverlayEntry? entry) {
+  if (entry != null) {
+    entry.remove();
+  }
+  // audio track widget
+  final content = Container(
+    height: 50,
+    decoration: BoxDecoration(
+      color: Palette.primary.value,
+      borderRadius: BorderRadius.circular(28),
+    ),
+    child: Column(
+      children: [
+        const SizedBox(
+          height: 10,
+        ),
+        Row(
+          children: [
+            const Text("0:00"),
+            Expanded(
+              child: Slider(
+                onChanged: (value) {},
+                value: 2.5,
+                max: 6,
+              ),
+            ),
+            const Text("02:34")
+          ],
+        )
+      ],
+    ),
+  );
+  entry = OverlayEntry(
+    builder: ((context) => Positioned(bottom: 50.0, child: content)),
+  );
+
+  final overlay = Overlay.of(context)!;
+  overlay.insert(entry);
 }
 
 class LabelChip extends StatelessWidget {
