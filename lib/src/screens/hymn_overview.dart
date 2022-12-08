@@ -173,8 +173,10 @@ class IndexView extends ConsumerWidget {
           thumbVisibility: false,
 
           //controller: _scrollController,
-          child: ListView.builder(
+          child: ListView.separated(
             shrinkWrap: true,
+            cacheExtent: 50,
+            separatorBuilder: (context, index) => const Divider(),
             restorationId: 'index_view',
             itemCount: titlesFr.length,
             itemBuilder: (context, index) {
