@@ -169,8 +169,10 @@ class Bookmarks extends ConsumerWidget {
             trackVisibility: true,
             interactive: true,
             //controller: _scrollController,
-            child: ListView.builder(
+            child: ListView.separated(
               shrinkWrap: true,
+              cacheExtent: 50,
+              separatorBuilder: (context, index) => const Divider(),
               restorationId: 'bookmarklist',
               itemCount: key.isEmpty
                   ? cantiquesgallery.length
