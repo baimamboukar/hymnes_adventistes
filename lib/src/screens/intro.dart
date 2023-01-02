@@ -11,7 +11,6 @@ import 'package:hymnes_adventistes/src/utils/index.dart';
 import 'package:hymnes_adventistes/src/utils/text_styles.dart' show TextStyles;
 import 'package:hymnes_adventistes/src/widgets/widgets.dart';
 import 'package:hymnes_adventistes/src/router/router.gr.dart' as routes;
-import 'package:line_icons/line_icons.dart';
 
 final _numberController = TextEditingController();
 
@@ -152,20 +151,20 @@ class Intro extends ConsumerWidget {
               )
             ],
           ),
-          Card(
-              color: Palette.light,
-              shape: RoundedRectangleBorder(
-                  borderRadius: Decorations.circularRadius(12)),
-              child: Container(
-                height: context.screenHeight * .75,
-                width: context.screenWidth,
-                decoration: BoxDecoration(
-                    color: Palette.light,
-                    borderRadius: BorderRadius.circular(12)),
-                child: Column(
-                  children: [],
-                ),
-              )),
+          // Card(
+          //     color: Palette.light,
+          //     shape: RoundedRectangleBorder(
+          //         borderRadius: Decorations.circularRadius(12)),
+          //     child: Container(
+          //       height: context.screenHeight * .75,
+          //       width: context.screenWidth,
+          //       decoration: BoxDecoration(
+          //           color: Palette.light,
+          //           borderRadius: BorderRadius.circular(12)),
+          //       child: Column(
+          //         children: [],
+          //       ),
+          //     )),
           const SizedBox(
             height: 20,
           ),
