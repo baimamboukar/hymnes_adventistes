@@ -7,7 +7,7 @@ final dataServicesRiverpod =
 
 final cantiqueRiverpod = FutureProvider.family<CantiqueModel, List<dynamic>>(
   (ref, data) async {
-    return await ref
+    return ref
         .read(dataServicesRiverpod)
         .getCantiqueById(number: data[0], lang: data[1]);
   },
