@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hymnes_adventistes/src/extensions/extensions.dart';
+import 'package:hymnes_adventistes/src/extensions/texttheme.dart';
+import 'package:hymnes_adventistes/src/extensions/theme.dart';
 import 'package:hymnes_adventistes/src/models/advent_color.dart';
 import 'package:hymnes_adventistes/src/utils/decorations.dart';
 import 'package:hymnes_adventistes/src/utils/index.dart';
@@ -23,7 +25,7 @@ class Settings extends ConsumerWidget {
               leading: const Icon(Icons.light_mode),
               title: Text(
                 "Theme",
-                style: TextStyles.designText(bold: false, size: 14),
+                style: context.coloredBodytext,
               ),
               subtitle: Text(
                 "mode sombre",
@@ -34,7 +36,7 @@ class Settings extends ConsumerWidget {
                 valueListenable: Hive.box('settings').listenable(),
                 builder: (BuildContext context, Box box, Widget? widget) {
                   return CupertinoSwitch(
-                    activeColor: Palette.primary.value,
+                    activeColor: context.colorScheme.primary,
                     value: box.get('theme') ?? false,
                     onChanged: (value) {
                       box.put('theme', value);
@@ -54,7 +56,7 @@ class Settings extends ConsumerWidget {
               ),
               title: Text(
                 "Police",
-                style: TextStyles.designText(bold: false, size: 14),
+                style: context.coloredBodytext,
               ),
               subtitle: Text(
                 "taille de police",
@@ -97,13 +99,12 @@ class Settings extends ConsumerWidget {
                                       width: 75,
                                       decoration: Decorations.decorateBox(
                                           radius: 24,
-                                          color: Palette.primary.value),
+                                          color: context.colorScheme.primary),
                                     ),
                                     const SizedBox(height: 22),
                                     Text(
                                       "Veuillez choisir la couleur principale",
-                                      style: TextStyles.designText(
-                                          bold: false, size: 14),
+                                      style: context.coloredBodytext,
                                     ),
                                     ...adventColors.map((color) {
                                       return ListTile(
@@ -114,8 +115,7 @@ class Settings extends ConsumerWidget {
                                         horizontalTitleGap: 0,
                                         title: Text(
                                           color.name,
-                                          style: TextStyles.designText(
-                                              bold: false, size: 14),
+                                          style: context.coloredBodytext,
                                         ),
                                         subtitle: Text(
                                           color.desc,
@@ -150,7 +150,7 @@ class Settings extends ConsumerWidget {
                 leading: const Icon(Icons.color_lens),
                 title: Text(
                   "Couleur",
-                  style: TextStyles.designText(bold: false, size: 14),
+                  style: context.coloredBodytext,
                 ),
                 subtitle: Text(
                   "changer de couleur",
