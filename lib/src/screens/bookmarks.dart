@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hymnes_adventistes/src/extensions/extensions.dart';
+import 'package:hymnes_adventistes/src/extensions/theme.dart';
 import 'package:hymnes_adventistes/src/models/cantique.dart';
 import 'package:hymnes_adventistes/src/riverpods/cantique_services.dart';
 import 'package:hymnes_adventistes/src/utils/data.dart';
@@ -62,7 +63,7 @@ class Bookmarks extends ConsumerWidget {
                       height: 4,
                       width: 40,
                       decoration: BoxDecoration(
-                        color: Palette.primary.value,
+                        color: context.colorScheme.primary,
                         borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(12),
                             topRight: Radius.circular(12)),
@@ -89,7 +90,7 @@ class Bookmarks extends ConsumerWidget {
                       height: 4,
                       width: 40,
                       decoration: BoxDecoration(
-                        color: Palette.primary.value,
+                        color: context.colorScheme.primary,
                         borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(12),
                             topRight: Radius.circular(12)),
@@ -116,7 +117,7 @@ class Bookmarks extends ConsumerWidget {
                       height: 4,
                       width: 40,
                       decoration: BoxDecoration(
-                        color: Palette.primary.value,
+                        color: context.colorScheme.primary,
                         borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(12),
                             topRight: Radius.circular(12)),
@@ -193,7 +194,7 @@ class Bookmarks extends ConsumerWidget {
                         routes.CantiqueView(cantique: _cantique, lang: 'fr'));
                   },
                   leading: CircleAvatar(
-                    backgroundColor: Palette.primary.value,
+                    backgroundColor: context.colorScheme.primary,
                     child: Center(
                         child: Text("${index + 1}",
                             style: TextStyles.designText(
