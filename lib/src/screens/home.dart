@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:hymnes_adventistes/src/models/cantique.dart';
+import 'package:hymnes_adventistes/src/extensions/theme.dart';
 import 'package:hymnes_adventistes/src/screens/index.dart';
 import 'package:hymnes_adventistes/src/utils/index.dart';
 import 'package:hymnes_adventistes/src/utils/text_styles.dart';
@@ -45,7 +45,7 @@ class Home extends ConsumerWidget {
               labelType: NavigationRailLabelType.selected,
               selectedIndex: activeIndex.state,
               indicatorColor: Palette.light.withOpacity(.55),
-              backgroundColor: Color(box.get('color') ?? 0xFF007681),
+              backgroundColor: context.colorScheme.primary,
               selectedIconTheme:
                   IconThemeData(color: Color(box.get('color') ?? 0xFF007681)),
               unselectedIconTheme:
