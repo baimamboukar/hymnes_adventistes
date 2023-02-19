@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:grouped_list/grouped_list.dart';
 import 'package:hymnes_adventistes/src/extensions/extensions.dart';
+import 'package:hymnes_adventistes/src/extensions/theme.dart';
 import 'package:hymnes_adventistes/src/models/cantique.dart';
 import 'package:hymnes_adventistes/src/riverpods/cantique_services.dart';
 import 'package:hymnes_adventistes/src/utils/data.dart';
@@ -33,7 +34,7 @@ class _HymnOverviewState extends ConsumerState<HymnOverview> {
       length: 3,
       child: Scaffold(
           appBar: AppBar(
-            backgroundColor: Palette.primary.value,
+            backgroundColor: context.colorScheme.primary,
             title: Text(
               "Hymnes & Louanges",
               style: TextStyles.designText(
@@ -128,7 +129,7 @@ class ThematicView extends ConsumerWidget {
                       height: 40,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12.0),
-                        color: Palette.primary.value,
+                        color: context.colorScheme.primary,
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -191,7 +192,7 @@ class IndexView extends ConsumerWidget {
                       routes.CantiqueView(cantique: _cantique, lang: 'fr'));
                 },
                 leading: CircleAvatar(
-                  backgroundColor: Palette.primary.value,
+                  backgroundColor: context.colorScheme.primary,
                   child: Center(
                       child: Text("${index + 1}",
                           style: TextStyles.designText(
@@ -235,7 +236,7 @@ class AlphabeticView extends ConsumerWidget {
         groupSeparatorBuilder: (String groupByValue) => Padding(
           padding: const EdgeInsets.all(8.0),
           child: CircleAvatar(
-            backgroundColor: Palette.primary.value,
+            backgroundColor: context.colorScheme.primary,
             child: Center(
                 child: Text(groupByValue,
                     style: TextStyles.designText(
@@ -244,7 +245,7 @@ class AlphabeticView extends ConsumerWidget {
         ),
         itemBuilder: (context, String cantique) => ListTile(
           leading: CircleAvatar(
-            backgroundColor: Palette.primary.value,
+            backgroundColor: context.colorScheme.primary,
             child: Center(
                 child: Text("${titlesFr.indexOf(cantique) + 1}",
                     style: TextStyles.designText(
