@@ -53,6 +53,7 @@ dependencies:
   grouped_list: ^5.1.2
   searchable_listview: ^2.0.1
   hive_listener: ^1.2.1
+  flutter_hicons: ^0.0.1
   #awesome_notifications: ^0.7.3
 
 dev_dependencies:
