@@ -1,8 +1,11 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter_hicons/flutter_hicons.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:hymnes_adventistes/src/extensions/extensions.dart';
+import 'package:hymnes_adventistes/src/extensions/texttheme.dart';
+import 'package:hymnes_adventistes/src/extensions/theme.dart';
 import 'package:hymnes_adventistes/src/models/cantique.dart';
 import 'package:hymnes_adventistes/src/riverpods/cantique_services.dart';
 import 'package:hymnes_adventistes/src/utils/decorations.dart';
@@ -10,7 +13,6 @@ import 'package:hymnes_adventistes/src/utils/index.dart';
 import 'package:hymnes_adventistes/src/utils/text_styles.dart';
 import 'package:hymnes_adventistes/src/widgets/widgets.dart';
 import 'package:line_icons/line_icons.dart';
-import 'package:lottie/lottie.dart';
 
 final langs = ['full', 'fr', 'en'];
 final cantiqueBook = {
@@ -27,13 +29,6 @@ class CantiqueView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    OverlayEntry? entry;
-    // post frame callback
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      // if (entry == null) {
-      //   showOverlay(context, entry);
-      // }
-    });
     return DefaultTabController(
       initialIndex: langs.indexOf(lang),
       length: 3,
@@ -56,12 +51,12 @@ class CantiqueView extends ConsumerWidget {
                 );
               },
               icon: const Icon(
-                Icons.more_vert,
+                Hicons.menu_kebab,
                 color: Colors.white,
               ),
             ),
           ],
-          backgroundColor: Palette.primary.value,
+          backgroundColor: context.colorScheme.primary,
           leading: IconButton(
             icon: const Icon(
               Icons.arrow_back_ios,
@@ -115,7 +110,7 @@ class CantiqueView extends ConsumerWidget {
 
           return TabBarView(
             children: [
-              buildCantiqueBody(
+              buildCantiqueBody(context,
                   lang: 'full',
                   cantique: fullRef != 0
                       ? ref
@@ -123,13 +118,15 @@ class CantiqueView extends ConsumerWidget {
                           .getCantiqueById(number: fullRef, lang: 'full')
                       : null),
               buildCantiqueBody(
-                  lang: 'fr',
-                  cantique: frRef != 0
-                      ? ref
-                          .read(dataServicesRiverpod)
-                          .getCantiqueById(number: frRef, lang: 'fr')
-                      : null),
-              buildCantiqueBody(
+                context,
+                lang: 'fr',
+                cantique: frRef != 0
+                    ? ref
+                        .read(dataServicesRiverpod)
+                        .getCantiqueById(number: frRef, lang: 'fr')
+                    : null,
+              ),
+              buildCantiqueBody(context,
                   lang: 'en',
                   cantique: enRef != 0
                       ? ref
@@ -161,7 +158,8 @@ class CantiqueView extends ConsumerWidget {
     );
   }
 
-  Widget buildCantiqueBody({CantiqueModel? cantique, required String lang}) {
+  Widget buildCantiqueBody(BuildContext context,
+      {CantiqueModel? cantique, required String lang}) {
     if (cantique == null) {
       return const NoReferenceCantique();
     }
@@ -175,12 +173,12 @@ class CantiqueView extends ConsumerWidget {
               const SizedBox(
                 height: 20,
               ),
-              const SizedBox(
-                height: 20,
-              ),
               Text(
                 cantique.title,
-                style: TextStyles.designText(bold: false, size: 18),
+                style: context.texttheme.titleLarge!.copyWith(
+                  color: context.colorScheme.primary,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
               Text(
                 "${cantique.number} - ${cantiqueBook[lang]}",
@@ -196,7 +194,9 @@ class CantiqueView extends ConsumerWidget {
                     Text(
                       strophe.number.toString(),
                       style: TextStyles.designText(
-                          bold: true, color: Palette.primary.value, size: 20),
+                          bold: true,
+                          color: context.colorScheme.primary,
+                          size: 20),
                     ),
                     const SizedBox(
                       height: 8,
@@ -211,7 +211,7 @@ class CantiqueView extends ConsumerWidget {
                                   size: 16,
                                   color: cantique.refrain &&
                                           strophe.number == "refrain"
-                                      ? Palette.primary.value
+                                      ? context.colorScheme.primary
                                       : Palette.dark)
                               .copyWith(
                             textBaseline: TextBaseline.alphabetic,
@@ -244,7 +244,7 @@ void showOverlay(BuildContext context, OverlayEntry? entry) {
   final content = Container(
     height: 50,
     decoration: BoxDecoration(
-      color: Palette.primary.value,
+      color: context.colorScheme.primary,
       borderRadius: BorderRadius.circular(28),
     ),
     child: Column(
@@ -272,7 +272,7 @@ void showOverlay(BuildContext context, OverlayEntry? entry) {
     builder: ((context) => Positioned(bottom: 50.0, child: content)),
   );
 
-  final overlay = Overlay.of(context)!;
+  final overlay = Overlay.of(context);
   overlay.insert(entry);
 }
 
@@ -297,10 +297,10 @@ class LabelChip extends StatelessWidget {
         decoration: Decorations.decorateBox(
                 radius: 32,
                 color: activeLanguage.state == position
-                    ? Palette.primary.value
+                    ? context.colorScheme.primary
                     : Palette.light)
             .copyWith(
-                // border: Border.all(color: Palette.primary.value, width: 2),
+                // border: Border.all(color: context.colorScheme.primary, width: 2),
                 ),
         child: Center(
             child: Text(
@@ -310,7 +310,7 @@ class LabelChip extends StatelessWidget {
               size: 14,
               color: activeLanguage.state == position
                   ? Palette.light
-                  : Palette.primary.value),
+                  : context.colorScheme.primary),
         )),
       ),
     );
@@ -340,7 +340,7 @@ class _BottomSheet extends ConsumerWidget {
             height: 5,
             width: 50,
             decoration: BoxDecoration(
-              color: Palette.primary.value,
+              color: context.colorScheme.primary,
               borderRadius: BorderRadius.circular(10),
             ),
           ),
@@ -349,7 +349,7 @@ class _BottomSheet extends ConsumerWidget {
           ),
           ListTile(
             leading: CircleAvatar(
-              backgroundColor: Palette.primary.value,
+              backgroundColor: context.colorScheme.primary,
               child: const Icon(
                 Icons.screenshot,
                 color: Palette.light,
@@ -366,7 +366,7 @@ class _BottomSheet extends ConsumerWidget {
           ),
           ListTile(
             leading: CircleAvatar(
-              backgroundColor: Palette.primary.value,
+              backgroundColor: context.colorScheme.primary,
               child: const Icon(
                 LineIcons.share,
                 color: Palette.light,
