@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hymnes_adventistes/src/extensions/extensions.dart';
-import 'package:hymnes_adventistes/src/utils/index.dart';
+import 'package:hymnes_adventistes/src/extensions/theme.dart';
 
 import '../utils/decorations.dart';
 
@@ -19,11 +19,11 @@ class Box extends StatelessWidget {
         width: tiny ?? false ? 100 : null,
         decoration: Decorations.decorateBox(
           radius: 22,
-          color: Palette.primary.value,
+          color: context.colorScheme.primary,
           // gradient: const LinearGradient(
           //   begin: Alignment.topLeft,
           //   end: Alignment.topRight,
-          //   colors: [Palette.primary.value, Palette.light, Palette.tertiary],
+          //   colors: [context.colorScheme.primary, Palette.light, Palette.tertiary],
           // ),
         ),
         child: child ?? const SizedBox.shrink(),
