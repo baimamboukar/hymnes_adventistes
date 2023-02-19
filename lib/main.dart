@@ -2,11 +2,10 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hive_listener/hive_listener.dart';
 import 'package:hymnes_adventistes/src/router/router.gr.dart';
-import 'package:hymnes_adventistes/src/utils/index.dart';
+import 'package:hymnes_adventistes/src/utils/theme/theme.dart';
 
 Future<void> main() async {
   await Hive.initFlutter();
@@ -34,56 +33,26 @@ class HymnesAdventistes extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return HiveListener(
       box: Hive.box('settings'),
-      // valueListenable: Hive.box<dynamic>('settings').listenable(),
-      builder: (Box box) => MaterialApp.router(
-        builder: EasyLoading.init(),
-        restorationScopeId: 'app',
-        locale: const Locale('fr'),
-        routerDelegate: appRouter.delegate(),
-        routeInformationParser: appRouter.defaultRouteParser(),
-        debugShowCheckedModeBanner: false,
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
-        supportedLocales: AppLocalizations.supportedLocales,
-        title: 'Hymnes Adventistes',
-        themeMode: box.get('theme') ?? false ? ThemeMode.dark : ThemeMode.light,
-        darkTheme: ThemeData.dark().copyWith(
-          scaffoldBackgroundColor: Palette.backgroundDark.value,
-          bottomNavigationBarTheme: BottomNavigationBarThemeData(
-              backgroundColor: Palette.backgroundDark.value),
-          typography: Typography.material2021(),
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-          textTheme: GoogleFonts.poppinsTextTheme(
-            const TextTheme()
-                .apply(bodyColor: Palette.light, displayColor: Palette.light),
-          ),
-        ),
-        theme: ThemeData(
-          useMaterial3: true,
-          typography: Typography.material2021(),
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-          textTheme: GoogleFonts.poppinsTextTheme(
-            const TextTheme()
-                .apply(bodyColor: Palette.light, displayColor: Palette.light),
-          ),
-          primaryColor: Palette.tertiary,
-          primarySwatch: MaterialColor(
-            box.get('color') ?? 0xFF007681,
-            {
-              100: Color(box.get('color') ?? 0xFF007681),
-              700: const Color(0xFFEEC36D),
-              600: const Color(0xFF337669),
-              200: const Color(0xFFEEC36D),
-              500: const Color(0xFF337669),
-              400: const Color(0xFFEEC36D),
-              50: const Color(0xFF337669),
-              300: const Color(0xFFEEC36D),
-            },
-          ),
-          appBarTheme:
-              const AppBarTheme(iconTheme: IconThemeData(color: Palette.light)),
-          iconTheme: const IconThemeData(color: Palette.light, size: 22.0),
-        ),
-      ),
+      builder: (Box box) {
+        final theme = SabbathSongsTheme(
+          primaryColor: Color(box.get('color') ?? 0xFF007681),
+        );
+        return MaterialApp.router(
+          builder: EasyLoading.init(),
+          restorationScopeId: 'advent_hymnals',
+          locale: const Locale('en'),
+          routerDelegate: appRouter.delegate(),
+          routeInformationParser: appRouter.defaultRouteParser(),
+          debugShowCheckedModeBanner: false,
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          title: 'Hymnes Adventistes',
+          themeMode:
+              box.get('theme') ?? false ? ThemeMode.dark : ThemeMode.light,
+          theme: theme.toThemeData(),
+          darkTheme: theme.toThemeData(),
+        );
+      },
     );
   }
 }
