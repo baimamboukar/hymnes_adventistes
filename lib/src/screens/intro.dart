@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart'
     show WidgetRef, ConsumerWidget;
 import 'package:hymnes_adventistes/src/extensions/index.dart';
+import 'package:hymnes_adventistes/src/extensions/texttheme.dart';
+import 'package:hymnes_adventistes/src/extensions/theme.dart';
 import 'package:hymnes_adventistes/src/models/cantique.dart';
 import 'package:hymnes_adventistes/src/riverpods/cantique_services.dart';
-import 'package:hymnes_adventistes/src/utils/decorations.dart';
 import 'package:hymnes_adventistes/src/utils/index.dart';
 import 'package:hymnes_adventistes/src/utils/text_styles.dart' show TextStyles;
 import 'package:hymnes_adventistes/src/widgets/widgets.dart';
@@ -26,8 +27,15 @@ class Intro extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const SizedBox(height: 18),
-          Text("Hymnes Adventistes", style: TextStyles.title),
+          const SizedBox(height: 0),
+          Text(
+            "Hymnes Adventistes",
+            style: context.texttheme.bodyLarge!.copyWith(
+              fontSize: 22,
+              color: context.colorScheme.primary,
+            ),
+          ),
+          const Divider(),
           const SizedBox(height: 18),
           Row(
             children: [
