@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hicons/flutter_hicons.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hymnes_adventistes/src/extensions/texttheme.dart';
 import 'package:hymnes_adventistes/src/extensions/theme.dart';
 import 'package:hymnes_adventistes/src/screens/index.dart';
 import 'package:hymnes_adventistes/src/utils/index.dart';
@@ -24,6 +26,7 @@ class Home extends ConsumerWidget {
         //   onPressed: () {},
         //   child: const Icon(LineIcons.music),
         // ),
+        backgroundColor: context.colorScheme.primaryContainer,
         body: Row(
           children: [
             NavigationRail(
@@ -33,10 +36,42 @@ class Home extends ConsumerWidget {
               },
               extended: false,
               groupAlignment: .75,
-              trailing: Image.asset(
-                "assets/images/logo.png",
-                width: 70,
-                height: 55,
+              trailing: GestureDetector(
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) => Dialog(
+                      child: SizedBox(
+                        //height: 200,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 14.0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const SizedBox(height: 20),
+                              Text(
+                                "Hymnes Adventistes",
+                                style: context.texttheme.bodyLarge!.copyWith(
+                                  fontSize: 22,
+                                  color: context.colorScheme.primary,
+                                ),
+                              ),
+                              Text("v1.0.0",
+                                  style: context.texttheme.bodyMedium),
+                              const Divider(),
+                              const SizedBox(height: 20),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                },
+                child: Image.asset(
+                  "assets/images/logo.png",
+                  width: 70,
+                  height: 55,
+                ),
               ),
               //trailing: const Icon(LineIcons.music),
               elevation: 10.0,
@@ -47,12 +82,12 @@ class Home extends ConsumerWidget {
               indicatorColor: Palette.light.withOpacity(.55),
               backgroundColor: context.colorScheme.primary,
               selectedIconTheme:
-                  IconThemeData(color: Color(box.get('color') ?? 0xFF007681)),
+                  IconThemeData(color: context.colorScheme.primary),
               unselectedIconTheme:
                   IconThemeData(color: Palette.light.withOpacity(.8)),
               destinations: <NavigationRailDestination>[
                 NavigationRailDestination(
-                  icon: const Icon(LineIcons.music),
+                  icon: const Icon(Hicons.musicnote),
                   label: Text(
                     "Hymns",
                     style: TextStyles.designText(
@@ -81,7 +116,7 @@ class Home extends ConsumerWidget {
                   padding: const EdgeInsets.only(bottom: 30),
                 ),
                 NavigationRailDestination(
-                  icon: const Icon(Icons.settings),
+                  icon: const Icon(Hicons.setting),
                   label: Text(
                     "Parametres",
                     style: TextStyles.designText(
