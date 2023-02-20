@@ -1,16 +1,15 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hicons/flutter_hicons.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:grouped_list/grouped_list.dart';
-import 'package:hymnes_adventistes/src/extensions/extensions.dart';
 import 'package:hymnes_adventistes/src/extensions/theme.dart';
 import 'package:hymnes_adventistes/src/models/cantique.dart';
 import 'package:hymnes_adventistes/src/riverpods/cantique_services.dart';
 import 'package:hymnes_adventistes/src/utils/data.dart';
 import 'package:hymnes_adventistes/src/utils/palette.dart';
 import 'package:hymnes_adventistes/src/utils/text_styles.dart';
-import 'package:hymnes_adventistes/src/widgets/box.dart';
 import 'package:line_icons/line_icons.dart';
 
 import 'package:hymnes_adventistes/src/router/router.gr.dart' as routes;
@@ -56,18 +55,24 @@ class _HymnOverviewState extends ConsumerState<HymnOverview> {
               tabs: const [
                 Tab(
                   text: "Index",
+                  icon: Icon(Hicons.arrow_swap_horizontal),
                 ),
                 Tab(
                   text: "Alphabetique",
                 ),
                 Tab(
                   text: "Thematique",
+                  icon: Icon(Hicons.category),
                 ),
               ],
             ),
           ),
           body: const TabBarView(
-            children: [IndexView(), AlphabeticView(), ThematicView()],
+            children: [
+              IndexView(),
+              AlphabeticView(),
+              ThematicView(),
+            ],
           )),
     );
   }
