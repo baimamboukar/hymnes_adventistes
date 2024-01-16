@@ -35,7 +35,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   cupertino_icons: ^1.0.2
-  intl: ^0.17.0
+  intl: ^0.18.1
   google_fonts: ^3.0.1
   flutter_riverpod: ^1.0.4
   auto_route: ^4.2.0

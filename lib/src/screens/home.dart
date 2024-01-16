@@ -143,7 +143,7 @@ class Home extends ConsumerWidget {
                     index: activeIndex.state,
                     children: const [
                       Intro(),
-                      Bookmarks(),
+                      BookMarks(),
                       Text("Themes"),
                       Settings(),
                     ],
