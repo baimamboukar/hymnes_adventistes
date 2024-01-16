@@ -27,7 +27,6 @@ class HymnOverview extends ConsumerStatefulWidget {
 class _HymnOverviewState extends ConsumerState<HymnOverview> {
   @override
   Widget build(BuildContext context) {
-    final key = ref.watch(keyProvider.state).state;
     return DefaultTabController(
       length: 3,
       child: Scaffold(
