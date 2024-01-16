@@ -8,7 +8,7 @@
 PRODUCT_NAME = hymnes_adventistes
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = baimamboukar.adventsociety.org.hymnesAdventistes
+PRODUCT_BUNDLE_IDENTIFIER = dev.baimamboukar.hymnesAdventistes
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2022 baimamboukar.advent_society.org. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2024 dev.baimamboukar. All rights reserved.

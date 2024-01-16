@@ -6,4 +6,5 @@ push:
       git commit -m "$1"
    done
 
-git push -u origin main
+  git push -u origin main
+
