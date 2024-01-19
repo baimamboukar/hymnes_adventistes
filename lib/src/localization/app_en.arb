@@ -1,3 +1,15 @@
 {
-    "adventist": "Advent"
+  "adventist": "Advent",
+  "share": "share",
+  "share_with": "Share with",
+  "next": "Next",
+  "back": "Back",
+  "done": "Done",
+  "search": "Search",
+  "search_for": "Search for",
+  "favorite": "Favorites",
+  "recent_played": "Recent Played",
+  "clear_all": "Clear All",
+  "no_favorite": "No Favorites",
+  "no_recent_played": "No Recent Played"
 }
