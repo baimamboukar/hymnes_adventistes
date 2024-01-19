@@ -1,3 +1,15 @@
 {
-  "adventist": "Adventiste"
+  "adventist": "Adventiste",
+  "share": "Partager",
+  "share_with": "Partager avec",
+  "next": "Suivant",
+  "back": "Retour",
+  "done": "Terminé",
+  "search": "Rechercher",
+  "search_for": "Rechercher pour",
+  "favorite": "Favoris",
+  "recent_played": "Écoutes récentes",
+  "clear_all": "Tout effacer",
+  "no_favorite": "Aucun favori",
+  "no_recent_played": "Aucune écoute récente"
 }
