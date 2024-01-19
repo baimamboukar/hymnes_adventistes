@@ -1,9 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:hymnes_adventistes/src/app/app_runner.dart';
 import 'package:hymnes_adventistes/src/app/blocs.dart';
-import 'package:hymnes_adventistes/src/router/router.gr.dart';
+import 'package:hymnes_adventistes/src/router/router.dart';
 import 'package:hymnes_adventistes/src/utils/theme/theme.dart';
 
 Future<void> bootstrap({required VoidCallback runner}) async {
@@ -45,6 +46,7 @@ class _SabbathSongsState extends State<SabbathSongs> {
         theme: SabbathSongsTheme.light,
         darkTheme: SabbathSongsTheme.dark,
         themeMode: ThemeMode.light,
+        supportedLocales: AppLocalizations.supportedLocales,
         //supportedLocales: AppLocalizations.supportedLocales,
       ),
     );
