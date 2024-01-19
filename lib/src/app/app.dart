@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:hymnes_adventistes/src/app/app_runner.dart';
 import 'package:hymnes_adventistes/src/app/blocs.dart';
-import 'package:hymnes_adventistes/src/extensions/extensions.dart';
 import 'package:hymnes_adventistes/src/router/router.gr.dart';
 import 'package:hymnes_adventistes/src/utils/theme/theme.dart';
 
@@ -40,12 +39,13 @@ class _SabbathSongsState extends State<SabbathSongs> {
       child: MaterialApp.router(
         routerDelegate: appRouter.delegate(),
         routeInformationParser: appRouter.defaultRouteParser(),
-        title: context.loc.adventist,
+        title: "context.loc.adventist",
         restorationScopeId: 'app',
         debugShowCheckedModeBanner: false,
         theme: SabbathSongsTheme.light,
         darkTheme: SabbathSongsTheme.dark,
         themeMode: ThemeMode.light,
+        //supportedLocales: AppLocalizations.supportedLocales,
       ),
     );
   }

@@ -8,7 +8,7 @@ class SabbathSongsTheme {
 
 ThemeData _getTheme(Brightness brightness) => ThemeData(
       useMaterial3: true,
-      brightness: brightness,
+      //brightness: brightness,
       fontFamily: 'Gilroy',
       colorScheme: SeedColorScheme.fromSeeds(
         brightness: Brightness.dark,
@@ -17,6 +17,6 @@ ThemeData _getTheme(Brightness brightness) => ThemeData(
         secondary: const Color(0xFF626262),
         tertiary: const Color(0xFF1B2121),
         background: const Color(0xFFFF96A7),
-        tones: FlexTones.vivid(Brightness.light),
+        tones: FlexTones.vivid(brightness),
       ),
     );
