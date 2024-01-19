@@ -1,3 +1,15 @@
 {
-  "adventist": "Adventiste"
+  "adventist": "Adventist",
+  "share": "Jooɓin",
+  "share_with": "Jooɓin la",
+  "next": "To'ggo",
+  "back": "Hugɗo",
+  "done": "Ɓeɗo",
+  "search": "Nduuma",
+  "search_for": "Nduuma ko",
+  "favorite": "Favoris",
+  "recent_played": "Ɓurɗe tawiiɗo",
+  "clear_all": "Jooɓin haaɗto",
+  "no_favorite": "Alaaɗo favori",
+  "no_recent_played": "Alaaɗo Ɓurɗe tawiiɗo"
 }
