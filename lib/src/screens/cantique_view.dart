@@ -1,8 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hicons/flutter_hicons.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import 'package:hymnes_adventistes/src/extensions/extensions.dart';
 import 'package:hymnes_adventistes/src/extensions/texttheme.dart';
 import 'package:hymnes_adventistes/src/extensions/theme.dart';
@@ -21,6 +21,7 @@ final cantiqueBook = {
   'en': 'SDA hymnals',
 };
 
+@RoutePage()
 class CantiqueView extends ConsumerWidget {
   final CantiqueModel cantique;
   final String lang;

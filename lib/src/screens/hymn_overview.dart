@@ -17,6 +17,7 @@ final keyProvider = StateProvider<String>((ref) {
   return "";
 });
 
+@RoutePage()
 class HymnOverview extends ConsumerStatefulWidget {
   const HymnOverview({Key? key}) : super(key: key);
 
