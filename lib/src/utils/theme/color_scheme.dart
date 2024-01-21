@@ -5,7 +5,7 @@ class SabbathSongsColorschemes {
   // static get light => _getTheme(Brightness.light);
 }
 
-ColorScheme _getColorshcme(int primary) {
+ColorScheme _getColorscheme(int primary) {
   return SeedColorScheme.fromSeeds(
     brightness: Brightness.dark,
     primary: Color(primary),
