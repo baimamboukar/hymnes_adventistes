@@ -14,8 +14,16 @@ void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(const SabbathSongs());
+    // Find MaterialApp widget.
+    final materialAppFinder = find.byType(MaterialApp);
 
     expect(find.byType(SabbathSongBlocs), findsOneWidget);
     expect(find.byType(MaterialApp), findsOneWidget);
+
+    // Get the MaterialApp widget.
+    final materialApp = tester.widget<MaterialApp>(materialAppFinder);
+
+    // Assert that the default locale is English.
+    expect(materialApp.supportedLocales, contains(const Locale('en', '')));
   });
 }
