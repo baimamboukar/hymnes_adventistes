@@ -24,10 +24,6 @@ class Home extends ConsumerWidget {
     return ValueListenableBuilder(
       valueListenable: Hive.box('settings').listenable(),
       builder: (BuildContext context, Box box, Widget? widget) => Scaffold(
-        // floatingActionButton: FloatingActionButton(
-        //   onPressed: () {},
-        //   child: const Icon(LineIcons.music),
-        // ),
         backgroundColor: context.colorScheme.primaryContainer,
         body: Row(
           children: [
