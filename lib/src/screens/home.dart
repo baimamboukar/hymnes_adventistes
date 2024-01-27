@@ -31,103 +31,7 @@ class Home extends ConsumerWidget {
         backgroundColor: context.colorScheme.primaryContainer,
         body: Row(
           children: [
-            NavigationRail(
-              //minWidth: 80,
-              onDestinationSelected: (index) {
-                activeIndex.state = index;
-              },
-              extended: false,
-              groupAlignment: .75,
-              trailing: GestureDetector(
-                onTap: () {
-                  showDialog(
-                    context: context,
-                    builder: (context) => Dialog(
-                      child: SizedBox(
-                        //height: 200,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 14.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              const SizedBox(height: 20),
-                              Text(
-                                "Hymnes Adventistes",
-                                style: context.texttheme.bodyLarge!.copyWith(
-                                  fontSize: 22,
-                                  color: context.colorScheme.primary,
-                                ),
-                              ),
-                              Text("v1.0.0",
-                                  style: context.texttheme.bodyMedium),
-                              const Divider(),
-                              const SizedBox(height: 20),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  );
-                },
-                child: Image.asset(
-                  "assets/images/logo.png",
-                  width: 70,
-                  height: 55,
-                ),
-              ),
-              //trailing: const Icon(LineIcons.music),
-              elevation: 10.0,
-              useIndicator: true,
-              selectedLabelTextStyle: TextStyles.body,
-              labelType: NavigationRailLabelType.selected,
-              selectedIndex: activeIndex.state,
-              indicatorColor: Palette.light.withOpacity(.55),
-              backgroundColor: context.colorScheme.primary,
-              selectedIconTheme:
-                  IconThemeData(color: context.colorScheme.primary),
-              unselectedIconTheme:
-                  IconThemeData(color: Palette.light.withOpacity(.8)),
-              destinations: <NavigationRailDestination>[
-                NavigationRailDestination(
-                  icon: const Icon(Hicons.musicnote),
-                  label: Text(
-                    "Hymns",
-                    style: TextStyles.designText(
-                        bold: false, size: 12, color: Palette.light),
-                  ),
-                  padding: const EdgeInsets.only(bottom: 30),
-                ),
-                NavigationRailDestination(
-                  icon: const Icon(
-                    LineIcons.heart,
-                  ),
-                  label: Text(
-                    "Favoris",
-                    style: TextStyles.designText(
-                        bold: false, size: 12, color: Palette.light),
-                  ),
-                  padding: const EdgeInsets.only(bottom: 30),
-                ),
-                NavigationRailDestination(
-                  icon: const Icon(Icons.layers),
-                  label: Text(
-                    "Themes",
-                    style: TextStyles.designText(
-                        bold: false, size: 12, color: Palette.light),
-                  ),
-                  padding: const EdgeInsets.only(bottom: 30),
-                ),
-                NavigationRailDestination(
-                  icon: const Icon(Hicons.setting),
-                  label: Text(
-                    "Parametres",
-                    style: TextStyles.designText(
-                        bold: false, size: 12, color: Palette.light),
-                  ),
-                  padding: const EdgeInsets.only(bottom: 30),
-                ),
-              ],
-            ),
+            _NavigationRail(activeIndex: activeIndex),
             // const VerticalDivider(thickness: 1),
             Expanded(
               child: Padding(
@@ -156,6 +60,113 @@ class Home extends ConsumerWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class _NavigationRail extends StatelessWidget {
+  const _NavigationRail({
+    super.key,
+    required this.activeIndex,
+  });
+
+  final StateController<int> activeIndex;
+
+  @override
+  Widget build(BuildContext context) {
+    return NavigationRail(
+      //minWidth: 80,
+      onDestinationSelected: (index) {
+        activeIndex.state = index;
+      },
+      extended: false,
+      groupAlignment: .75,
+      trailing: GestureDetector(
+        onTap: () {
+          showDialog(
+            context: context,
+            builder: (context) => Dialog(
+              child: SizedBox(
+                //height: 200,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 14.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const SizedBox(height: 20),
+                      Text(
+                        "Hymnes Adventistes",
+                        style: context.texttheme.bodyLarge!.copyWith(
+                          fontSize: 22,
+                          color: context.colorScheme.primary,
+                        ),
+                      ),
+                      Text("v1.0.0", style: context.texttheme.bodyMedium),
+                      const Divider(),
+                      const SizedBox(height: 20),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          );
+        },
+        child: Image.asset(
+          "assets/images/logo.png",
+          width: 70,
+          height: 55,
+        ),
+      ),
+      //trailing: const Icon(LineIcons.music),
+      elevation: 10.0,
+      useIndicator: true,
+      selectedLabelTextStyle: TextStyles.body,
+      labelType: NavigationRailLabelType.selected,
+      selectedIndex: activeIndex.state,
+      indicatorColor: Palette.light.withOpacity(.55),
+      backgroundColor: context.colorScheme.primary,
+      selectedIconTheme: IconThemeData(color: context.colorScheme.primary),
+      unselectedIconTheme: IconThemeData(color: Palette.light.withOpacity(.8)),
+      destinations: <NavigationRailDestination>[
+        NavigationRailDestination(
+          icon: const Icon(Hicons.musicnote),
+          label: Text(
+            "Hymns",
+            style: TextStyles.designText(
+                bold: false, size: 12, color: Palette.light),
+          ),
+          padding: const EdgeInsets.only(bottom: 30),
+        ),
+        NavigationRailDestination(
+          icon: const Icon(
+            LineIcons.heart,
+          ),
+          label: Text(
+            "Favoris",
+            style: TextStyles.designText(
+                bold: false, size: 12, color: Palette.light),
+          ),
+          padding: const EdgeInsets.only(bottom: 30),
+        ),
+        NavigationRailDestination(
+          icon: const Icon(Icons.layers),
+          label: Text(
+            "Themes",
+            style: TextStyles.designText(
+                bold: false, size: 12, color: Palette.light),
+          ),
+          padding: const EdgeInsets.only(bottom: 30),
+        ),
+        NavigationRailDestination(
+          icon: const Icon(Hicons.setting),
+          label: Text(
+            "Parametres",
+            style: TextStyles.designText(
+                bold: false, size: 12, color: Palette.light),
+          ),
+          padding: const EdgeInsets.only(bottom: 30),
+        ),
+      ],
     );
   }
 }
