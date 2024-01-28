@@ -8,10 +8,10 @@ import 'package:hymnes_adventistes/src/extensions/texttheme.dart';
 import 'package:hymnes_adventistes/src/extensions/theme.dart';
 import 'package:hymnes_adventistes/src/models/cantique.dart';
 import 'package:hymnes_adventistes/src/riverpods/cantique_services.dart';
+import 'package:hymnes_adventistes/src/router/router.gr.dart' as routes;
 import 'package:hymnes_adventistes/src/utils/index.dart';
 import 'package:hymnes_adventistes/src/utils/text_styles.dart' show TextStyles;
 import 'package:hymnes_adventistes/src/widgets/widgets.dart';
-import 'package:hymnes_adventistes/src/router/router.gr.dart' as routes;
 
 final _numberController = TextEditingController();
 
@@ -118,12 +118,17 @@ class Intro extends ConsumerWidget {
                                 CantiqueModel _cantique = ref
                                     .read(dataServicesRiverpod)
                                     .getCantiqueById(
-                                        number: int.parse(
-                                            _numberController.value.text),
-                                        lang: 'fr');
+                                      number: int.parse(
+                                        _numberController.value.text,
+                                      ),
+                                      lang: 'fr',
+                                    );
                                 Navigator.pop(context);
-                                context.router.push(routes.CantiqueView(
-                                    cantique: _cantique, lang: 'fr'));
+
+                                context.router.push(
+                                  routes.CantiqueView(
+                                      cantique: _cantique, lang: 'fr'),
+                                );
                               },
                               child: const Text("Francais"),
                             ),
@@ -133,12 +138,15 @@ class Intro extends ConsumerWidget {
                                 CantiqueModel _cantique = ref
                                     .read(dataServicesRiverpod)
                                     .getCantiqueById(
-                                        number: int.parse(
-                                            _numberController.value.text),
-                                        lang: 'en');
+                                      number: int.parse(
+                                          _numberController.value.text),
+                                      lang: 'en',
+                                    );
                                 Navigator.pop(context);
-                                context.router.push(routes.CantiqueView(
-                                    cantique: _cantique, lang: 'en'));
+                                context.router.push(
+                                  routes.CantiqueView(
+                                      cantique: _cantique, lang: 'en'),
+                                );
                               },
                               child: const Text("English"),
                             ),
