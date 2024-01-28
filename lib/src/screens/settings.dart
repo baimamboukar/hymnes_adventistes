@@ -31,16 +31,11 @@ class Settings extends ConsumerWidget {
               style: TextStyles.designText(
                   bold: false, color: Palette.dark, size: 8),
             ),
-            trailing: ValueListenableBuilder(
-              valueListenable: Hive.box('settings').listenable(),
-              builder: (BuildContext context, Box box, Widget? widget) {
-                return CupertinoSwitch(
-                  activeColor: context.colorScheme.primary,
-                  value: box.get('theme') ?? false,
-                  onChanged: (value) {
-                    box.put('theme', value);
-                  },
-                );
+            trailing: CupertinoSwitch(
+              activeColor: context.colorScheme.primary,
+              value: false,
+              onChanged: (value) {
+                //box.put('theme', value);
               },
             ),
           ),

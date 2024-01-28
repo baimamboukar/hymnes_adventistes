@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hicons/flutter_hicons.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hymnes_adventistes/src/extensions/texttheme.dart';
 import 'package:hymnes_adventistes/src/extensions/theme.dart';
 import 'package:hymnes_adventistes/src/screens/index.dart';
@@ -21,40 +20,37 @@ class Home extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final activeIndex = ref.watch(activeIndexRiverpod.state);
-    return ValueListenableBuilder(
-      valueListenable: Hive.box('settings').listenable(),
-      builder: (BuildContext context, Box box, Widget? widget) => Scaffold(
-        backgroundColor: context.colorScheme.primaryContainer,
-        body: Row(
-          children: [
-            _NavigationRail(activeIndex: activeIndex),
-            // const VerticalDivider(thickness: 1),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12) +
-                    const EdgeInsets.only(top: 18),
-                child: AnimatedSwitcher(
-                  duration: const Duration(milliseconds: 550),
-                  transitionBuilder: (widget, animation) {
-                    return ScaleTransition(
-                      scale: animation,
-                      child: widget,
-                    );
-                  },
-                  child: IndexedStack(
-                    index: activeIndex.state,
-                    children: const [
-                      Intro(),
-                      BookMarks(),
-                      Text("Themes"),
-                      Settings(),
-                    ],
-                  ),
+    return Scaffold(
+      backgroundColor: context.colorScheme.primaryContainer,
+      body: Row(
+        children: [
+          _NavigationRail(activeIndex: activeIndex),
+          // const VerticalDivider(thickness: 1),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12) +
+                  const EdgeInsets.only(top: 18),
+              child: AnimatedSwitcher(
+                duration: const Duration(milliseconds: 550),
+                transitionBuilder: (widget, animation) {
+                  return ScaleTransition(
+                    scale: animation,
+                    child: widget,
+                  );
+                },
+                child: IndexedStack(
+                  index: activeIndex.state,
+                  children: const [
+                    Intro(),
+                    BookMarks(),
+                    Text("Themes"),
+                    Settings(),
+                  ],
                 ),
               ),
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       ),
     );
   }

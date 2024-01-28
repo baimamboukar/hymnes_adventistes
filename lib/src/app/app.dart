@@ -2,15 +2,17 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hymnes_adventistes/src/app/app_runner.dart';
-import 'package:hymnes_adventistes/src/app/blocs.dart';
 import 'package:hymnes_adventistes/src/router/router.dart';
 import 'package:hymnes_adventistes/src/utils/theme/theme.dart';
 
 Future<void> bootstrap({required VoidCallback runner}) async {
-  await AppRunner.preRunAction();
   runZonedGuarded(
-    runner,
+    () async {
+      await AppRunner.preRunAction();
+      runner();
+    },
     (object, trace) async {
       /// Save to Firebase CrashLytics ///
       /// Save to Sentry ///
@@ -36,7 +38,7 @@ class _SabbathSongsState extends State<SabbathSongs> {
 
   @override
   Widget build(BuildContext context) {
-    return SabbathSongBlocs(
+    return ProviderScope(
       child: MaterialApp.router(
         routerDelegate: appRouter.delegate(),
         routeInformationParser: appRouter.defaultRouteParser(),
