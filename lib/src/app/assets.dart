@@ -1,6 +1,6 @@
 class Assets {
   Assets._();
-  
+
   /// Assets for assetsAnimationsNotes
   /// assets/animations/notes.json
   static const String assetsAnimationsNotes = "assets/animations/notes.json";
@@ -23,7 +23,7 @@ class Assets {
 
   /// Assets for assetsDataHymnsEn
   /// assets/data/hymns_en.json
-  static const String assetsDataHymnsEn = "assets/data/hymns_en.json";
+  static const String assetsDataHymnsEnX = "assets/data/hymns_en.json";
 
   /// Assets for assetsDataHymnsFr
   /// assets/data/hymns_fr.json
@@ -35,7 +35,8 @@ class Assets {
 
   /// Assets for assetsDataHymnsFulClean
   /// assets/data/hymns-ful-clean.json
-  static const String assetsDataHymnsFulClean = "assets/data/hymns-ful-clean.json";
+  static const String assetsDataHymnsFulClean =
+      "assets/data/hymns-ful-clean.json";
 
   /// Assets for assetsDataHymnsFull
   /// assets/data/hymns-full.json
@@ -43,7 +44,7 @@ class Assets {
 
   /// Assets for assetsDataHymnsFull
   /// assets/data/hymns_full.json
-  static const String assetsDataHymnsFull = "assets/data/hymns_full.json";
+  static const String assetsDataHymnsFullX = "assets/data/hymns_full.json";
 
   /// Assets for assetsDataTitles
   /// assets/data/titles.json
@@ -581,4 +582,3 @@ class Assets {
   /// assets/sounds/298.midi
   static const String assetsSounds298 = "assets/sounds/298.midi";
 }
-
